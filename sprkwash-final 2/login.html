@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sprkwash – Sign In / Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0B1D3A; --blue: #1D6FE8; --blue-dark: #1558C0;
+      --blue-light: #EEF4FF; --white: #FFFFFF;
+      --gray-100: #F1F5F9; --gray-200: #E2E8F0; --gray-300: #CBD5E1;
+      --gray-500: #64748B; --gray-700: #334155; --gray-900: #0F172A;
+      --green: #16A34A; --red: #DC2626;
+      --font: 'Plus Jakarta Sans', sans-serif;
+    }
+    body { font-family: var(--font); background: linear-gradient(150deg, #EEF4FF 0%, #F5F9FF 50%, #fff 100%); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    nav { background: rgba(255,255,255,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid #F1F5F9; padding: 0 24px; }
+    .nav-inner { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; height: 70px; }
+    .logo { font-size: 22px; font-weight: 800; color: var(--navy); letter-spacing: -0.5px; }
+    .logo span { color: var(--blue); }
+    .page { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+    .card { background: white; border-radius: 22px; border: 1.5px solid var(--gray-200); box-shadow: 0 8px 40px rgba(0,0,0,0.10); padding: 44px; width: 100%; max-width: 440px; }
+    .tabs { display: flex; background: var(--gray-100); border-radius: 12px; padding: 4px; margin-bottom: 32px; }
+    .tab { flex: 1; text-align: center; padding: 10px; border-radius: 9px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; background: transparent; color: var(--gray-500); font-family: var(--font); transition: all 0.18s; }
+    .tab.active { background: white; color: var(--navy); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    .discount-badge { display: flex; align-items: center; gap: 10px; background: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: 12px; padding: 12px 16px; margin-bottom: 24px; }
+    .discount-badge .icon { font-size: 22px; }
+    .discount-badge p { font-size: 13px; color: #166534; font-weight: 600; line-height: 1.5; }
+    .discount-badge span { font-weight: 400; color: #15803D; }
+    .form-title { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 24px; letter-spacing: -0.3px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: 13px; font-weight: 700; color: var(--gray-700); }
+    .form-group input { font-family: var(--font); font-size: 15px; color: var(--gray-900); padding: 13px 16px; border-radius: 10px; border: 1.5px solid var(--gray-200); outline: none; transition: all 0.15s; background: white; width: 100%; }
+    .form-group input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(29,111,232,0.12); }
+    .form-group input::placeholder { color: var(--gray-300); }
+    .submit-btn { width: 100%; padding: 15px; font-size: 15px; font-weight: 800; background: var(--blue); color: white; border: none; border-radius: 12px; cursor: pointer; font-family: var(--font); transition: all 0.2s; margin-top: 6px; }
+    .submit-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .error-box { display: none; background: #FEF2F2; border: 1.5px solid #FECACA; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; color: var(--red); font-weight: 600; }
+    .success-box { display: none; background: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; color: #166534; font-weight: 600; }
+    .back-link { text-align: center; margin-top: 20px; font-size: 13px; color: var(--gray-500); }
+    .back-link a { color: var(--blue); font-weight: 700; }
+  </style>
+</head>
+<body>
+<nav><div class="nav-inner"><a href="index.html" class="logo">sprk<span>wash</span></a></div></nav>
+<div class="page">
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" id="tab-signin" onclick="switchTab('signin')">Sign In</button>
+      <button class="tab" id="tab-signup" onclick="switchTab('signup')">Create Account</button>
+    </div>
+    <div class="error-box" id="errorBox"></div>
+    <div class="success-box" id="successBox"></div>
+
+    <!-- SIGN IN -->
+    <div id="signinPanel">
+      <h2 class="form-title">Welcome back 👋</h2>
+      <div class="form-group"><label>Email</label><input type="email" id="signin-email" placeholder="you@email.com"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="signin-password" placeholder="Your password"></div>
+      <button class="submit-btn" id="signinBtn" onclick="signIn()">Sign In</button>
+      <div class="back-link"><a href="index.html">← Back to sprkwash</a></div>
+    </div>
+
+    <!-- SIGN UP -->
+    <div id="signupPanel" style="display:none;">
+      <div class="discount-badge">
+        <div class="icon">🎉</div>
+        <p>New members get <strong>5% off their first booking</strong> — a one-time welcome offer!<br><span>Mention your email when booking to redeem.</span></p>
+      </div>
+      <h2 class="form-title">Create your account</h2>
+      <div class="form-group"><label>Full Name</label><input type="text" id="signup-name" placeholder="John Smith"></div>
+      <div class="form-group"><label>Email</label><input type="email" id="signup-email" placeholder="you@email.com"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="signup-password" placeholder="At least 8 characters"></div>
+      <button class="submit-btn" id="signupBtn" onclick="signUp()">Create Account &amp; Claim Welcome Offer</button>
+      <div class="back-link"><a href="index.html">← Back to sprkwash</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── SUPABASE CONFIG ─────────────────────────────────────────────
+  // 1. Go to supabase.com → New Project (free)
+  // 2. Settings → API → copy Project URL + anon/public key
+  // 3. Paste both below
+  const SUPABASE_URL  = 'https://csirpmvfdrvzwpjceerh.supabase.co';
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNzaXJwbXZmZHJ2endwamNlZXJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzODQ3MjUsImV4cCI6MjA5NDk2MDcyNX0.nPLlNM5jcZsxBzdwfmFCexGcOqfL-dXyIGIf6SOVHkE';
+  const ADMIN_EMAIL   = 'capturebyjay10@gmail.com';
+  // ───────────────────────────────────────────────────────────────
+
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+  sb.auth.getSession().then(({ data }) => {
+    if (data.session) redirectUser(data.session.user.email);
+  });
+
+  function switchTab(t) {
+    const s = t === 'signin';
+    document.getElementById('tab-signin').classList.toggle('active', s);
+    document.getElementById('tab-signup').classList.toggle('active', !s);
+    document.getElementById('signinPanel').style.display = s ? 'block' : 'none';
+    document.getElementById('signupPanel').style.display = s ? 'none' : 'block';
+    clearMessages();
+  }
+  function showError(m) { const e = document.getElementById('errorBox'); e.textContent = m; e.style.display = 'block'; document.getElementById('successBox').style.display = 'none'; }
+  function showSuccess(m) { const e = document.getElementById('successBox'); e.textContent = m; e.style.display = 'block'; document.getElementById('errorBox').style.display = 'none'; }
+  function clearMessages() { document.getElementById('errorBox').style.display = 'none'; document.getElementById('successBox').style.display = 'none'; }
+  function redirectUser(email) { window.location.href = email === ADMIN_EMAIL ? 'admin.html' : 'account.html'; }
+
+  async function signIn() {
+    const email = document.getElementById('signin-email').value.trim();
+    const pass  = document.getElementById('signin-password').value;
+    const btn   = document.getElementById('signinBtn');
+    if (!email || !pass) return showError('Please enter your email and password.');
+    btn.textContent = 'Signing in…'; btn.disabled = true;
+    const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+    if (error) { showError(error.message); btn.textContent = 'Sign In'; btn.disabled = false; return; }
+    redirectUser(data.user.email);
+  }
+
+  async function signUp() {
+    const name  = document.getElementById('signup-name').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const pass  = document.getElementById('signup-password').value;
+    const btn   = document.getElementById('signupBtn');
+    if (!name || !email || !pass) return showError('Please fill in all fields.');
+    if (pass.length < 8) return showError('Password must be at least 8 characters.');
+    btn.textContent = 'Creating account…'; btn.disabled = true;
+    const { error } = await sb.auth.signUp({ email, password: pass, options: { data: { full_name: name } } });
+    if (error) { showError(error.message); btn.textContent = 'Create Account & Get 5% Off'; btn.disabled = false; return; }
+    showSuccess('Account created! Check your email to confirm, then sign in.');
+    btn.textContent = 'Create Account & Claim Welcome Offer'; btn.disabled = false;
+  }
+</script>
+</body>
+</html>
