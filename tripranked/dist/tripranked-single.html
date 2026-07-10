@@ -1,0 +1,2678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>TripRanked — Drive. Track. Rank.</title>
+  <meta name="description" content="Track your drives with GPS — live speed, distance, driving stats, trip history, shareable stat cards and global leaderboards.">
+  <meta name="theme-color" content="#0a0e13">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTExYTI0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzBhMGUxMyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYXJjIiB4MT0iMCIgeTE9IjEiIHgyPSIxIiB5Mj0iMCI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzFkYjU3MSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM1Y2YwYWUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTE2IiBmaWxsPSJ1cmwoI2JnKSIvPgogIDxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjQ5MiIgaGVpZ2h0PSI0OTIiIHJ4PSIxMDYiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwuMDYpIiBzdHJva2Utd2lkdGg9IjQiLz4KICA8IS0tIGdhdWdlIHRyYWNrOiAyNDDCsCBzd2VlcCAtLT4KICA8cGF0aCBkPSJNIDEyMy45IDM1OC4yIEEgMTUyIDE1MiAwIDEgMSAzODguMSAzNTguMiIKICAgICAgICBmaWxsPSJub25lIiBzdHJva2U9IiMxZDI4MzMiIHN0cm9rZS13aWR0aD0iNDYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gZ2F1Z2UgZmlsbCB+NzAlIC0tPgogIDxwYXRoIGQ9Ik0gMTIzLjkgMzU4LjIgQSAxNTIgMTUyIDAgMSAxIDM4OC4xIDM1OC4yIgogICAgICAgIGZpbGw9Im5vbmUiIHN0cm9rZT0idXJsKCNhcmMpIiBzdHJva2Utd2lkdGg9IjQ2IiBzdHJva2UtbGluZWNhcD0icm91bmQiCiAgICAgICAgcGF0aExlbmd0aD0iMTAwIiBzdHJva2UtZGFzaGFycmF5PSI3MiAyOCIvPgogIDwhLS0gbmVlZGxlIHBvaW50aW5nIHRvIHRoZSBmaWxsIHRpcCAofnRvcCByaWdodCkgLS0+CiAgPGc+CiAgICA8bGluZSB4MT0iMjU2IiB5MT0iMjg2IiB4Mj0iMzY2IiB5Mj0iMTgyIiBzdHJva2U9IiNlZWY0ZjgiIHN0cm9rZS13aWR0aD0iMjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjg2IiByPSI0MCIgZmlsbD0iI2VlZjRmOCIvPgogICAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjg2IiByPSIxOCIgZmlsbD0iIzBhMGUxMyIvPgogIDwvZz4KICA8IS0tIHJhbmsgYmFycywgYm90dG9tIC0tPgogIDxnIGZpbGw9IiMyNDMxM2YiPgogICAgPHJlY3QgeD0iMTU2IiB5PSIzODAiIHdpZHRoPSI0NCIgaGVpZ2h0PSI1MiIgcng9IjEwIi8+CiAgICA8cmVjdCB4PSIzMTIiIHk9IjM5MiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQwIiByeD0iMTAiLz4KICA8L2c+CiAgPHJlY3QgeD0iMjM0IiB5PSIzNTYiIHdpZHRoPSI0NCIgaGVpZ2h0PSI3NiIgcng9IjEwIiBmaWxsPSJ1cmwoI2FyYykiLz4KPC9zdmc+Cg==" type="image/svg+xml">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TripRanked">
+  <style>
+/* ═══════════════ TripRanked — dark cockpit theme ═══════════════ */
+
+:root {
+  --bg: #0a0e13;
+  --bg2: #0d131b;
+  --panel: #121a23;
+  --panel2: #17212c;
+  --line: rgba(255, 255, 255, .07);
+  --txt: #eef4f8;
+  --dim: #8fa0ae;
+  --dim2: #5b6a76;
+  --acc: #3dd68c;
+  --acc-soft: rgba(61, 214, 140, .14);
+  --blue: #59b7ff;
+  --amber: #ffb020;
+  --red: #ff5d5d;
+  --gold: #ffd45e;
+  --r: 18px;
+  --tabbar-h: 62px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+b { font-weight: 700; }
+small { font-size: .62em; font-weight: 600; color: var(--dim); }
+.hidden { display: none !important; }
+.dim { color: var(--dim); }
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background:
+    radial-gradient(120% 50% at 50% -10%, #14202b 0%, transparent 60%),
+    var(--bg);
+}
+
+@media (min-width: 560px) {
+  body { background: #05070a; }
+  #app {
+    min-height: 100vh;
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    box-shadow: 0 0 80px rgba(0, 0, 0, .6);
+  }
+}
+
+/* ─────────── top bar ─────────── */
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(10px + env(safe-area-inset-top)) 18px 10px;
+  position: sticky; top: 0; z-index: 20;
+  background: linear-gradient(rgba(10, 14, 19, .92), rgba(10, 14, 19, .75));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.brand { font-weight: 900; font-size: 19px; letter-spacing: .4px; }
+.brand .bolt { margin-right: 4px; }
+.brand-accent { color: var(--acc); }
+
+.chip {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .6px;
+  padding: 5px 11px; border-radius: 999px;
+  background: var(--panel); border: 1px solid var(--line); color: var(--dim);
+  transition: all .25s;
+}
+.chip-hidden { opacity: 0; }
+.chip.ok    { color: var(--acc);  border-color: rgba(61, 214, 140, .4);  background: var(--acc-soft); }
+.chip.warn  { color: var(--amber); border-color: rgba(255, 176, 32, .4); background: rgba(255, 176, 32, .1); }
+.chip.bad   { color: var(--red);  border-color: rgba(255, 93, 93, .4);   background: rgba(255, 93, 93, .1); }
+.chip.pulse { animation: chipPulse 1.2s ease-in-out infinite; }
+@keyframes chipPulse { 50% { opacity: .45; } }
+
+/* ─────────── screens ─────────── */
+
+main { flex: 1; }
+
+.screen {
+  display: none;
+  padding: 8px 18px calc(var(--tabbar-h) + 26px + env(safe-area-inset-bottom));
+  animation: fadeUp .22s ease;
+}
+.screen.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } }
+
+.screen-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin: 10px 2px 14px;
+}
+.screen-head h2 { font-size: 24px; font-weight: 850; letter-spacing: .2px; }
+
+.pill {
+  font-size: 10.5px; font-weight: 800; letter-spacing: .8px;
+  padding: 4px 10px; border-radius: 999px;
+  background: var(--acc-soft); color: var(--acc);
+  border: 1px solid rgba(61, 214, 140, .25);
+}
+
+/* ─────────── gauge ─────────── */
+
+.gauge-wrap { position: relative; margin: 6px auto 0; max-width: 340px; }
+#gauge { width: 100%; display: block; }
+
+.gauge-track {
+  fill: none; stroke: var(--panel2); stroke-width: 14; stroke-linecap: round;
+}
+.gauge-fill {
+  fill: none; stroke: url(#gaugeGrad); stroke-width: 14; stroke-linecap: round;
+  stroke: var(--acc);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset .25s linear, stroke .4s;
+  filter: drop-shadow(0 0 8px rgba(61, 214, 140, .45));
+}
+.gauge-fill.hot { stroke: var(--amber); filter: drop-shadow(0 0 8px rgba(255, 176, 32, .5)); }
+
+#gaugeTicks text {
+  fill: var(--dim2); font-size: 10.5px; font-weight: 700;
+  font-family: inherit;
+}
+
+.gauge-center {
+  position: absolute; inset: 0; top: 18%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.speed-now {
+  font-size: clamp(64px, 21vw, 88px);
+  font-weight: 900; line-height: 1; letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 30px rgba(61, 214, 140, .25);
+}
+.speed-unit { font-size: 15px; font-weight: 700; color: var(--dim); letter-spacing: 2px; text-transform: uppercase; }
+
+.gauge-sub {
+  text-align: center; font-size: 13px; font-weight: 600; color: var(--dim);
+  margin: 2px 0 14px; min-height: 18px;
+}
+.dot-sep { margin: 0 6px; color: var(--dim2); }
+
+/* ─────────── live tiles ─────────── */
+
+.live-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.tile {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 10px 8px 9px; text-align: center;
+}
+.tile-label { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--dim2); }
+.tile-value { font-size: 19px; font-weight: 800; margin-top: 3px; font-variant-numeric: tabular-nums; }
+
+.drive-lower {
+  display: flex; align-items: center; gap: 14px;
+  margin: 14px 0 6px; min-height: 92px;
+}
+
+/* g-force bubble */
+.gmeter { position: relative; width: 92px; height: 92px; flex: 0 0 auto; }
+.gmeter-ring {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1.5px solid var(--line); background: radial-gradient(circle, var(--panel) 30%, var(--bg2));
+}
+.gmeter-cross {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(var(--line), var(--line)) center/1px 76% no-repeat,
+    linear-gradient(var(--line), var(--line)) center/76% 1px no-repeat;
+  border-radius: 50%;
+}
+.gmeter-dot {
+  position: absolute; left: 50%; top: 50%; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--acc);
+  box-shadow: 0 0 10px rgba(61, 214, 140, .8);
+  transform: translate(-50%, -50%);
+  transition: transform .18s linear, background .2s;
+}
+.gmeter-dot.hard { background: var(--red); box-shadow: 0 0 10px rgba(255, 93, 93, .8); }
+.gmeter-label {
+  position: absolute; top: 7px; left: 0; right: 0; text-align: center;
+  font-size: 9px; font-weight: 800; color: var(--dim2); letter-spacing: 1px;
+}
+.gmeter-val {
+  position: absolute; bottom: 7px; left: 0; right: 0; text-align: center;
+  font-size: 10.5px; font-weight: 700; color: var(--dim); font-variant-numeric: tabular-nums;
+}
+
+.events-live { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; flex: 1; }
+.ev-chip {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  padding: 8px 12px; font-size: 13.5px; display: flex; justify-content: space-between; align-items: center;
+}
+.ev-chip b { font-size: 15px; font-variant-numeric: tabular-nums; }
+.ev-chip.flash { animation: evFlash .6s ease; }
+@keyframes evFlash { 0% { background: rgba(255, 93, 93, .35); } }
+
+/* ─────────── buttons ─────────── */
+
+.drive-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+
+.btn {
+  border-radius: 16px; font-weight: 800; letter-spacing: .5px;
+  padding: 13px 18px; font-size: 15px;
+  transition: transform .08s, filter .15s, opacity .2s;
+  user-select: none;
+}
+.btn:active { transform: scale(.975); }
+.btn-big { padding: 17px 18px; font-size: 17px; }
+.btn-primary {
+  background: linear-gradient(135deg, #2fe08d, #1db571);
+  color: #04160d;
+  box-shadow: 0 6px 22px rgba(61, 214, 140, .35);
+}
+.btn-danger {
+  background: linear-gradient(135deg, #ff6a5f, #e03131);
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(255, 93, 93, .3);
+}
+.btn-ghost { background: var(--panel); border: 1px solid var(--line); color: var(--dim); font-weight: 700; }
+.btn-ghost:hover { color: var(--txt); }
+.btn-soft { background: var(--panel2); border: 1px solid var(--line); color: var(--txt); }
+.btn[disabled] { opacity: .5; pointer-events: none; }
+
+.gps-help {
+  margin-top: 12px; padding: 12px 14px; border-radius: 14px;
+  background: rgba(255, 176, 32, .08); border: 1px solid rgba(255, 176, 32, .25);
+  color: #ffd9a0; font-size: 13.5px; line-height: 1.45;
+}
+
+.safety {
+  margin-top: 16px; text-align: center;
+  font-size: 11.5px; color: var(--dim2); line-height: 1.5; padding: 0 8px;
+}
+
+/* recording pulse on the Drive tab */
+.tab .rec-dot {
+  position: absolute; top: 6px; right: calc(50% - 16px);
+  width: 8px; height: 8px; border-radius: 50%; background: var(--red);
+  animation: chipPulse 1s infinite;
+}
+
+/* ─────────── segmented controls ─────────── */
+
+.seg {
+  display: flex; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 13px; padding: 4px; gap: 4px; margin-bottom: 10px;
+}
+.seg button {
+  flex: 1; padding: 9px 4px; border-radius: 10px;
+  font-size: 13.5px; font-weight: 750; color: var(--dim);
+  transition: all .18s;
+}
+.seg button.on { background: var(--panel2); color: var(--txt); box-shadow: inset 0 0 0 1px rgba(61, 214, 140, .35); }
+.seg-mini button { padding: 7px 4px; font-size: 12.5px; }
+
+/* ─────────── leaderboard ─────────── */
+
+.lb-loading { text-align: center; color: var(--dim); padding: 40px 0; }
+
+.podium {
+  display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: 8px;
+  align-items: end; margin: 16px 0 14px;
+}
+.pod {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+  text-align: center; padding: 14px 6px 12px; position: relative;
+}
+.pod.p1 { background: linear-gradient(180deg, rgba(255, 212, 94, .12), var(--panel)); border-color: rgba(255, 212, 94, .35); padding-top: 20px; }
+.pod.p2 { background: linear-gradient(180deg, rgba(200, 210, 220, .08), var(--panel)); }
+.pod.p3 { background: linear-gradient(180deg, rgba(205, 137, 80, .08), var(--panel)); }
+.pod.you-glow { box-shadow: 0 0 0 1.5px var(--acc); }
+.pod-medal { font-size: 20px; }
+.pod-ava { font-size: 30px; line-height: 1.2; }
+.pod-name { font-size: 12.5px; font-weight: 750; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px; }
+.pod-val { font-size: 14px; font-weight: 850; color: var(--acc); margin-top: 3px; font-variant-numeric: tabular-nums; }
+.pod-val small { color: var(--dim); }
+
+.lb-row {
+  display: flex; align-items: center; gap: 11px;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 14px; padding: 10px 13px; margin-bottom: 7px;
+}
+.lb-row.you {
+  background: linear-gradient(90deg, var(--acc-soft), var(--panel)), var(--bg2);
+  border-color: rgba(61, 214, 140, .45);
+  position: sticky; bottom: calc(var(--tabbar-h) + 10px + env(safe-area-inset-bottom)); top: 64px;
+  z-index: 5; box-shadow: 0 4px 18px rgba(0, 0, 0, .45);
+}
+.lb-rank { width: 30px; text-align: center; font-weight: 850; color: var(--dim); font-variant-numeric: tabular-nums; flex: 0 0 auto; }
+.lb-rank.medal { font-size: 17px; }
+.lb-ava { font-size: 21px; flex: 0 0 auto; }
+.lb-name { flex: 1; min-width: 0; font-weight: 700; font-size: 14.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lb-name .flag { margin-left: 5px; font-size: 13px; }
+.lb-name .you-tag { color: var(--acc); font-size: 11px; font-weight: 800; letter-spacing: .5px; margin-left: 6px; }
+.lb-val { font-weight: 850; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+.lb-val small { color: var(--dim); font-size: .72em; }
+.lb-gap { text-align: center; color: var(--dim2); margin: 4px 0 10px; letter-spacing: 3px; }
+.lb-note { text-align: center; font-size: 11.5px; color: var(--dim2); margin: 14px 6px 4px; line-height: 1.5; }
+
+/* ─────────── history ─────────── */
+
+.hist-totals {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px;
+}
+.hist-totals .tile { padding: 9px 4px 8px; }
+.hist-totals .tile-value { font-size: 15.5px; }
+
+.trip-card {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 16px; padding: 13px 14px; margin-bottom: 9px;
+  cursor: pointer; transition: border-color .15s, transform .08s;
+}
+.trip-card:active { transform: scale(.985); }
+.trip-card:hover { border-color: rgba(61, 214, 140, .35); }
+.trip-ico { font-size: 24px; flex: 0 0 auto; }
+.trip-main { flex: 1; min-width: 0; }
+.trip-title { font-weight: 750; font-size: 14.5px; display: flex; align-items: center; gap: 7px; }
+.trip-when { font-size: 12px; color: var(--dim); margin-top: 2px; }
+.trip-sub { font-size: 12px; color: var(--dim); margin-top: 4px; }
+.trip-right { text-align: right; flex: 0 0 auto; }
+.trip-dist { font-weight: 850; font-size: 16.5px; font-variant-numeric: tabular-nums; }
+.trip-dist small { font-size: .65em; }
+
+.badge {
+  font-size: 9.5px; font-weight: 800; letter-spacing: .6px;
+  padding: 2.5px 7px; border-radius: 999px;
+}
+.badge-demo { background: rgba(89, 183, 255, .15); color: var(--blue); border: 1px solid rgba(89, 183, 255, .3); }
+.badge-score { border: 1px solid var(--line); color: var(--dim); background: var(--bg2); }
+.badge-score.good { color: var(--acc); border-color: rgba(61, 214, 140, .35); }
+.badge-score.mid { color: var(--amber); border-color: rgba(255, 176, 32, .35); }
+.badge-score.bad { color: var(--red); border-color: rgba(255, 93, 93, .35); }
+
+.empty {
+  text-align: center; padding: 48px 24px; color: var(--dim);
+  line-height: 1.6; font-size: 14px;
+}
+.empty .big { font-size: 40px; display: block; margin-bottom: 10px; }
+
+/* ─────────── profile ─────────── */
+
+.pro-head { display: flex; align-items: center; gap: 16px; margin: 14px 2px 18px; }
+.pro-ava {
+  width: 74px; height: 74px; border-radius: 50%; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 38px; background: var(--panel2);
+  border: 2px solid rgba(61, 214, 140, .5);
+  box-shadow: 0 0 24px rgba(61, 214, 140, .18);
+}
+.pro-name { font-size: 21px; font-weight: 850; display: flex; align-items: center; gap: 8px; }
+.pro-tag { color: var(--dim); font-size: 13px; font-weight: 600; margin-top: 2px; }
+.pro-edit { color: var(--acc); font-size: 12.5px; font-weight: 750; margin-top: 6px; }
+
+.card {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 15px 16px; margin-bottom: 12px;
+}
+.card h3 {
+  font-size: 11.5px; font-weight: 850; letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--dim2); margin-bottom: 11px;
+}
+
+.tier-row { display: flex; align-items: center; gap: 13px; }
+.tier-ico { font-size: 34px; }
+.tier-name { font-weight: 850; font-size: 17px; }
+.tier-next { font-size: 12px; color: var(--dim); margin-top: 2px; }
+.tier-bar { height: 7px; border-radius: 4px; background: var(--bg2); margin-top: 12px; overflow: hidden; }
+.tier-bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--acc), #7ef0b7); transition: width .5s ease; }
+
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stat-grid .tile { text-align: left; padding: 11px 13px; }
+.stat-grid .tile-value { font-size: 18px; }
+
+.ach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.ach {
+  background: var(--bg2); border: 1px solid var(--line); border-radius: 13px;
+  text-align: center; padding: 11px 6px 9px;
+}
+.ach.locked { opacity: .32; filter: grayscale(.7); }
+.ach-ico { font-size: 23px; }
+.ach-name { font-size: 10.5px; font-weight: 750; margin-top: 4px; }
+.ach-desc { font-size: 9px; color: var(--dim); margin-top: 2px; line-height: 1.35; }
+
+.set-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 11px 2px; border-bottom: 1px solid var(--line);
+}
+.set-row:last-child { border-bottom: none; }
+.set-lbl { font-weight: 700; font-size: 14.5px; }
+.set-sub { font-size: 11.5px; color: var(--dim); margin-top: 2px; }
+.set-row .seg { margin: 0; width: 150px; flex: 0 0 auto; }
+.set-row .seg button { padding: 6px 4px; font-size: 12px; }
+
+.switch { position: relative; width: 48px; height: 28px; flex: 0 0 auto; }
+.switch input { opacity: 0; width: 100%; height: 100%; position: absolute; cursor: pointer; z-index: 2; margin: 0; }
+.switch i {
+  position: absolute; inset: 0; border-radius: 999px; background: var(--panel2);
+  border: 1px solid var(--line); transition: background .2s;
+}
+.switch i::after {
+  content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
+  border-radius: 50%; background: var(--dim); transition: all .2s;
+}
+.switch input:checked + i { background: var(--acc-soft); border-color: rgba(61, 214, 140, .4); }
+.switch input:checked + i::after { left: 23px; background: var(--acc); }
+
+.danger-link { color: var(--red); font-weight: 750; font-size: 13.5px; }
+.about { text-align: center; font-size: 11px; color: var(--dim2); line-height: 1.7; margin: 18px 10px 8px; }
+
+/* ─────────── tab bar ─────────── */
+
+.tabbar {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px; z-index: 30;
+  display: flex;
+  background: rgba(13, 18, 25, .88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+  height: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+}
+.tab {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; color: var(--dim2); position: relative; padding-top: 4px;
+}
+.tab svg { width: 23px; height: 23px; fill: currentColor; }
+.tab span { font-size: 10px; font-weight: 750; letter-spacing: .3px; }
+.tab.on { color: var(--acc); }
+
+/* ─────────── modal & toast ─────────── */
+
+.modal-back {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(4, 6, 9, .72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex; align-items: flex-end; justify-content: center;
+  animation: fadeIn .18s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } }
+
+.modal {
+  width: 100%; max-width: 480px; max-height: 92dvh; overflow-y: auto;
+  background: var(--bg2); border: 1px solid var(--line);
+  border-radius: 24px 24px 0 0;
+  padding: 20px 20px calc(22px + env(safe-area-inset-bottom));
+  animation: slideUp .25s cubic-bezier(.2, .8, .25, 1);
+}
+@keyframes slideUp { from { transform: translateY(60px); opacity: .4; } }
+
+@media (min-width: 560px) {
+  .modal-back { align-items: center; }
+  .modal { border-radius: 24px; max-height: 86vh; }
+}
+
+.modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.modal-head h3 { font-size: 19px; font-weight: 850; }
+.modal-x {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--panel); border: 1px solid var(--line);
+  color: var(--dim); font-size: 15px; font-weight: 800; line-height: 1;
+}
+
+.sum-hero { text-align: center; margin: 6px 0 4px; }
+.sum-score { font-size: 56px; font-weight: 900; line-height: 1; }
+.sum-grade { font-size: 15px; font-weight: 850; margin-top: 2px; letter-spacing: 1px; }
+.sum-grade.good { color: var(--acc); } .sum-grade.mid { color: var(--amber); } .sum-grade.bad { color: var(--red); }
+.sum-sub { color: var(--dim); font-size: 12.5px; margin-top: 6px; }
+
+.route-canvas {
+  width: 100%; height: 190px; display: block;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+  margin: 13px 0;
+}
+.graph-canvas {
+  width: 100%; height: 120px; display: block;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+  margin: 0 0 13px;
+}
+
+.sum-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+.sum-grid .tile { text-align: left; padding: 11px 13px; }
+
+.ev-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+.ev-strip .tile { padding: 8px 4px; }
+.ev-strip .tile-value { font-size: 16px; }
+
+.modal-actions { display: flex; flex-direction: column; gap: 9px; }
+.modal-actions .row2 { display: flex; gap: 9px; }
+.modal-actions .row2 .btn { flex: 1; }
+
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 12px; font-weight: 800; letter-spacing: .8px; color: var(--dim2); text-transform: uppercase; margin-bottom: 7px; }
+.field input[type="text"] {
+  width: 100%; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 13px; padding: 13px 14px; color: var(--txt);
+  font-size: 16px; font-weight: 700; outline: none;
+}
+.field input[type="text"]:focus { border-color: rgba(61, 214, 140, .5); }
+.emoji-row { display: flex; gap: 7px; flex-wrap: wrap; }
+.emoji-opt {
+  width: 46px; height: 46px; border-radius: 13px; font-size: 23px;
+  background: var(--panel); border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+}
+.emoji-opt.on { border-color: var(--acc); background: var(--acc-soft); }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(var(--tabbar-h) + 18px + env(safe-area-inset-bottom));
+  transform: translateX(-50%); z-index: 60;
+  background: #1c2733; color: var(--txt); border: 1px solid var(--line);
+  padding: 11px 18px; border-radius: 999px; font-size: 13.5px; font-weight: 700;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .5);
+  animation: toastIn .25s ease;
+  max-width: 86vw; text-align: center;
+}
+@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 10px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+<noscript><p style="padding:2rem;font-family:sans-serif">TripRanked needs JavaScript to track your drives.</p></noscript>
+
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span class="bolt">⚡</span>Trip<span class="brand-accent">Ranked</span></div>
+    <div id="gpsChip" class="chip chip-hidden">GPS</div>
+  </header>
+
+  <main id="main">
+
+    <!-- ══════════ DRIVE ══════════ -->
+    <section id="screen-drive" class="screen active">
+      <div class="gauge-wrap">
+        <svg id="gauge" viewBox="0 0 260 170" aria-hidden="true">
+          <path id="gaugeTrack" class="gauge-track" pathLength="100"></path>
+          <path id="gaugeFill" class="gauge-fill" pathLength="100"></path>
+          <g id="gaugeTicks"></g>
+        </svg>
+        <div class="gauge-center">
+          <div id="speedNow" class="speed-now">0</div>
+          <div id="speedUnit" class="speed-unit">mph</div>
+        </div>
+      </div>
+
+      <div class="gauge-sub">
+        <span id="headingLbl" class="dim">—</span>
+        <span class="dot-sep">·</span>
+        <span id="stateLbl" class="dim">Ready</span>
+      </div>
+
+      <div class="live-grid">
+        <div class="tile"><div class="tile-label">Time</div><div class="tile-value" id="lvTime">0:00</div></div>
+        <div class="tile"><div class="tile-label">Distance</div><div class="tile-value" id="lvDist">0.0<small id="lvDistU"> mi</small></div></div>
+        <div class="tile"><div class="tile-label">Avg</div><div class="tile-value" id="lvAvg">0</div></div>
+        <div class="tile"><div class="tile-label">Max</div><div class="tile-value" id="lvMax">0</div></div>
+      </div>
+
+      <div class="drive-lower">
+        <div id="gmeter" class="gmeter" title="G-force">
+          <div class="gmeter-ring"></div>
+          <div class="gmeter-cross"></div>
+          <div id="gDot" class="gmeter-dot"></div>
+          <div class="gmeter-label">G</div>
+          <div id="gVal" class="gmeter-val">0.00</div>
+        </div>
+        <div class="events-live">
+          <div class="ev-chip" title="Hard accelerations">⚡ <b id="evA">0</b></div>
+          <div class="ev-chip" title="Hard brakes">🛑 <b id="evB">0</b></div>
+          <div class="ev-chip" title="Hard corners">↩️ <b id="evC">0</b></div>
+          <div class="ev-chip" title="Stops">🚦 <b id="evS">0</b></div>
+        </div>
+      </div>
+
+      <div class="drive-actions">
+        <button id="btnStart" class="btn btn-primary btn-big">START DRIVE</button>
+        <button id="btnEnd" class="btn btn-danger btn-big hidden">END TRIP</button>
+        <button id="btnDemo" class="btn btn-ghost">▶&nbsp; Try a demo drive</button>
+      </div>
+      <p id="gpsHelp" class="gps-help hidden"></p>
+      <p class="safety">🛡️ Start your trip, then put the phone down. Never interact with TripRanked while driving.</p>
+    </section>
+
+    <!-- ══════════ RANKS ══════════ -->
+    <section id="screen-ranks" class="screen">
+      <div class="screen-head">
+        <h2>Leaderboard</h2>
+        <span id="lbMode" class="pill">GLOBAL GRID</span>
+      </div>
+      <div class="seg" id="segMetric">
+        <button data-metric="speed" class="on">Top Speed</button>
+        <button data-metric="distance">Distance</button>
+        <button data-metric="trips">Trips</button>
+      </div>
+      <div class="seg seg-mini" id="segPeriod">
+        <button data-period="week" class="on">This Week</button>
+        <button data-period="all">All Time</button>
+      </div>
+      <div id="lbBody" class="lb-body"><div class="lb-loading">Loading…</div></div>
+    </section>
+
+    <!-- ══════════ HISTORY ══════════ -->
+    <section id="screen-history" class="screen">
+      <div class="screen-head"><h2>Trips</h2><span id="histCount" class="pill"></span></div>
+      <div id="histTotals" class="hist-totals"></div>
+      <div id="histList" class="hist-list"></div>
+    </section>
+
+    <!-- ══════════ PROFILE ══════════ -->
+    <section id="screen-profile" class="screen">
+      <div id="profileBody"></div>
+    </section>
+
+  </main>
+
+  <nav class="tabbar" id="tabbar">
+    <button data-screen="drive" class="tab on">
+      <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 8.96 8.96 0 0 0 2.1 5.8l1.5-1.3A7 7 0 1 1 19 12c0 1.7-.6 3.3-1.6 4.5l1.5 1.3A8.96 8.96 0 0 0 21 12a9 9 0 0 0-9-9Zm3.9 5.2-4.6 3.4a1.8 1.8 0 1 0 2.1 2.9l3.4-4.6c.5-.7-.3-1.5-.9-1.7Z"/></svg>
+      <span>Drive</span>
+    </button>
+    <button data-screen="ranks" class="tab">
+      <svg viewBox="0 0 24 24"><path d="M5 3h14v2h2a1 1 0 0 1 1 1v2a5 5 0 0 1-5 5h-.4A6 6 0 0 1 13 16.7V19h3v2H8v-2h3v-2.3A6 6 0 0 1 7.4 13H7a5 5 0 0 1-5-5V6a1 1 0 0 1 1-1h2V3Zm0 4H4v1a3 3 0 0 0 3 3V7Zm15 1V7h-1v4a3 3 0 0 0 1-3Z"/></svg>
+      <span>Ranks</span>
+    </button>
+    <button data-screen="history" class="tab">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10h-2a8 8 0 1 1-8-8v3l5-4-5-4v3Zm-1 5v6l5 3 .9-1.6-3.9-2.3V7h-2Z"/></svg>
+      <span>Trips</span>
+    </button>
+    <button data-screen="profile" class="tab">
+      <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.4 0-8 2.7-8 6v2h16v-2c0-3.3-3.6-6-8-6Z"/></svg>
+      <span>You</span>
+    </button>
+  </nav>
+
+  <div id="modalBack" class="modal-back hidden">
+    <div id="modalBox" class="modal" role="dialog" aria-modal="true"></div>
+  </div>
+  <div id="toast" class="toast hidden"></div>
+</div>
+
+<script>
+/* TripRanked configuration.
+ *
+ * The app is fully functional with no setup — trips are stored on-device and the
+ * leaderboard runs against a simulated global field.
+ *
+ * OPTIONAL — real global leaderboard:
+ * Create a free Supabase project, run supabase/schema.sql in its SQL editor,
+ * then paste your project URL and anon (publishable) key below. Every player
+ * with the same config will share one live leaderboard.
+ */
+'use strict';
+
+window.TR_CONFIG = {
+  supabaseUrl: '',      // e.g. 'https://abcdefgh.supabase.co'
+  supabaseAnonKey: '',  // the "anon / publishable" key — safe to ship in a web page
+
+  // Driving-event thresholds (SI units). Tuned for ~1 Hz phone GPS.
+  thresholds: {
+    hardAccel: 2.8,     // m/s² sustained acceleration
+    hardBrake: -3.2,    // m/s² sustained deceleration
+    hardCornerG: 0.38,  // lateral g while turning
+    stopSpeed: 0.6,     // m/s — below this you are "stopped"
+    moveSpeed: 0.75,    // m/s — above this you are "moving"
+    maxAccuracyM: 40,   // reject GPS fixes worse than this
+    eventCooldownMs: 4000
+  }
+};
+
+</script>
+<script>
+/* TripRanked — shared utilities. Everything internal is SI: meters, m/s, milliseconds. */
+'use strict';
+
+const U = {
+  MS_TO_KMH: 3.6,
+  MS_TO_MPH: 2.236936,
+
+  $(sel, root) { return (root || document).querySelector(sel); },
+  $$(sel, root) { return Array.from((root || document).querySelectorAll(sel)); },
+
+  esc(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[c]);
+  },
+
+  clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); },
+  lerp(a, b, t) { return a + (b - a) * t; },
+
+  uid() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  },
+
+  /* ---- geo math ---- */
+
+  // Distance in meters between two lat/lon points.
+  haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371000, rad = Math.PI / 180;
+    const dLat = (lat2 - lat1) * rad, dLon = (lon2 - lon1) * rad;
+    const a = Math.sin(dLat / 2) ** 2 +
+      Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.min(1, Math.sqrt(a)));
+  },
+
+  // Initial bearing in degrees (0..360) from point 1 to point 2.
+  bearing(lat1, lon1, lat2, lon2) {
+    const rad = Math.PI / 180;
+    const y = Math.sin((lon2 - lon1) * rad) * Math.cos(lat2 * rad);
+    const x = Math.cos(lat1 * rad) * Math.sin(lat2 * rad) -
+      Math.sin(lat1 * rad) * Math.cos(lat2 * rad) * Math.cos((lon2 - lon1) * rad);
+    return (Math.atan2(y, x) / rad + 360) % 360;
+  },
+
+  // Signed shortest angular difference a→b in degrees (-180..180).
+  angDiff(a, b) {
+    let d = (b - a) % 360;
+    if (d > 180) d -= 360;
+    if (d < -180) d += 360;
+    return d;
+  },
+
+  compass(deg) {
+    const dirs = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    return dirs[Math.round(((deg % 360) + 360) % 360 / 45) % 8];
+  },
+
+  /* ---- units & formatting ---- */
+
+  // speed m/s -> {v, unit} in user units
+  speed(ms, units, digits = 0) {
+    const v = ms * (units === 'kmh' ? U.MS_TO_KMH : U.MS_TO_MPH);
+    return { v: v.toFixed(digits), unit: units === 'kmh' ? 'km/h' : 'mph' };
+  },
+
+  // distance meters -> {v, unit}
+  dist(m, units, digits = 1) {
+    if (units === 'kmh') {
+      const km = m / 1000;
+      return { v: km >= 100 ? Math.round(km).toString() : km.toFixed(digits), unit: 'km' };
+    }
+    const mi = m / 1609.344;
+    return { v: mi >= 100 ? Math.round(mi).toString() : mi.toFixed(digits), unit: 'mi' };
+  },
+
+  fmtDuration(ms) {
+    const s = Math.max(0, Math.floor(ms / 1000));
+    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), r = s % 60;
+    const p = n => String(n).padStart(2, '0');
+    return h > 0 ? `${h}:${p(m)}:${p(r)}` : `${m}:${p(r)}`;
+  },
+
+  fmtDurationLong(ms) {
+    const s = Math.max(0, Math.round(ms / 1000));
+    const h = Math.floor(s / 3600), m = Math.round((s % 3600) / 60);
+    if (h > 0) return `${h}h ${m}m`;
+    if (m > 0) return `${m} min`;
+    return `${s}s`;
+  },
+
+  fmtClock(ts) {
+    return new Date(ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  },
+
+  fmtDate(ts) {
+    return new Date(ts).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
+  },
+
+  relDate(ts) {
+    const d = new Date(ts), now = new Date();
+    const day = x => new Date(x.getFullYear(), x.getMonth(), x.getDate()).getTime();
+    const diff = Math.round((day(now) - day(d)) / 86400000);
+    if (diff === 0) return 'Today';
+    if (diff === 1) return 'Yesterday';
+    if (diff < 7) return d.toLocaleDateString([], { weekday: 'long' });
+    return d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+  },
+
+  fmtInt(n) { return Math.round(n).toLocaleString(); },
+
+  /* ---- deterministic PRNG (leaderboard field) ---- */
+
+  hashStr(s) {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  },
+
+  mulberry32(seed) {
+    let a = seed >>> 0;
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  },
+
+  // ISO week key like "2026-W28" — drives the weekly leaderboard shuffle.
+  isoWeek(ts) {
+    const d = new Date(ts ? ts : Date.now());
+    const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const dayNum = (t.getUTCDay() + 6) % 7;
+    t.setUTCDate(t.getUTCDate() - dayNum + 3);
+    const firstThu = new Date(Date.UTC(t.getUTCFullYear(), 0, 4));
+    const week = 1 + Math.round(((t - firstThu) / 86400000 - 3 + ((firstThu.getUTCDay() + 6) % 7)) / 7);
+    return `${t.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
+  },
+
+  // Start of the current ISO week (Monday 00:00 local).
+  weekStart(ts) {
+    const d = new Date(ts ? ts : Date.now());
+    const day = (d.getDay() + 6) % 7;
+    const m = new Date(d.getFullYear(), d.getMonth(), d.getDate() - day);
+    return m.getTime();
+  },
+
+  haptic(pattern) {
+    try { if (navigator.vibrate) navigator.vibrate(pattern); } catch (_) { /* unsupported */ }
+  },
+
+  /* Draw a recorded trip path ([lat,lon,t,v][]) into a canvas rect.
+   * Segments are colored by speed; start/end markers included. */
+  drawRoute(ctx, path, x, y, w, h, opts = {}) {
+    if (!path || path.length < 2) {
+      ctx.save();
+      ctx.fillStyle = opts.emptyColor || 'rgba(255,255,255,.25)';
+      ctx.font = `${Math.round(h / 10)}px system-ui, sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.fillText('No route recorded', x + w / 2, y + h / 2);
+      ctx.restore();
+      return;
+    }
+    let minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity, maxV = 1;
+    for (const p of path) {
+      minLat = Math.min(minLat, p[0]); maxLat = Math.max(maxLat, p[0]);
+      minLon = Math.min(minLon, p[1]); maxLon = Math.max(maxLon, p[1]);
+      maxV = Math.max(maxV, p[3] || 0);
+    }
+    const midLat = (minLat + maxLat) / 2;
+    const kx = Math.cos(midLat * Math.PI / 180);
+    const spanX = Math.max((maxLon - minLon) * kx, 1e-6);
+    const spanY = Math.max(maxLat - minLat, 1e-6);
+    const pad = opts.pad != null ? opts.pad : Math.min(w, h) * 0.12;
+    const scale = Math.min((w - pad * 2) / spanX, (h - pad * 2) / spanY);
+    const ox = x + w / 2 - ((minLon + maxLon) / 2) * kx * scale;
+    const oy = y + h / 2 + midLat * scale;
+    const px = p => [ox + p[1] * kx * scale, oy - p[0] * scale];
+
+    const speedColor = v => {
+      const t = U.clamp(v / Math.max(8, maxV), 0, 1);
+      // blue (slow) → green → amber (fast)
+      const h1 = U.lerp(210, 145, Math.min(1, t * 2));
+      const h2 = U.lerp(145, 40, Math.max(0, t * 2 - 1));
+      return `hsl(${t < 0.5 ? h1 : h2} 90% 60%)`;
+    };
+
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    const lw = opts.lineWidth || Math.max(2, Math.min(w, h) / 70);
+    if (opts.glow !== false) {
+      ctx.shadowColor = 'rgba(61,214,140,.5)';
+      ctx.shadowBlur = lw * 2.2;
+    }
+    for (let i = 1; i < path.length; i++) {
+      const [ax, ay] = px(path[i - 1]);
+      const [bx, by] = px(path[i]);
+      ctx.strokeStyle = speedColor(path[i][3] || 0);
+      ctx.lineWidth = lw;
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      ctx.lineTo(bx, by);
+      ctx.stroke();
+    }
+    ctx.shadowBlur = 0;
+    const dot = (p, color) => {
+      const [cx, cy] = px(p);
+      ctx.beginPath();
+      ctx.arc(cx, cy, lw * 1.6, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.lineWidth = Math.max(1.5, lw * 0.5);
+      ctx.strokeStyle = 'rgba(10,14,19,.9)';
+      ctx.stroke();
+    };
+    dot(path[0], '#3dd68c');
+    dot(path[path.length - 1], '#ff5d5d');
+    ctx.restore();
+  }
+};
+
+</script>
+<script>
+/* TripRanked — on-device persistence, scoring, ranks and achievements. */
+'use strict';
+
+const Store = (() => {
+  const KEY = 'tripranked.v1';
+
+  const EMOJIS = ['🏎️', '🚗', '🚙', '🛻', '🚘', '🏁', '⚡', '🛞', '🚕', '🚓'];
+
+  const defaults = () => ({
+    profile: {
+      name: 'Driver',
+      tag: 'TR-' + String(1000 + Math.floor(Math.random() * 9000)),
+      emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
+      hue: Math.floor(Math.random() * 360),
+      createdAt: Date.now()
+    },
+    settings: {
+      units: 'mph',        // 'mph' | 'kmh'
+      keepAwake: true,
+      demoSeen: false
+    },
+    trips: []              // newest first
+  });
+
+  let state = null;
+
+  function load() {
+    if (state) return state;
+    try {
+      const raw = localStorage.getItem(KEY);
+      state = raw ? Object.assign(defaults(), JSON.parse(raw)) : defaults();
+      // deep-merge the two nested objects so new fields get defaults
+      state.profile = Object.assign(defaults().profile, state.profile);
+      state.settings = Object.assign(defaults().settings, state.settings);
+      if (!Array.isArray(state.trips)) state.trips = [];
+    } catch (_) {
+      state = defaults();
+    }
+    return state;
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(state));
+    } catch (e) {
+      // Storage full — drop the heaviest payload (old trip paths) and retry once.
+      state.trips.slice(20).forEach(t => { t.path = []; t.speeds = []; });
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (_) { /* give up quietly */ }
+    }
+  }
+
+  /* ---- trips ---- */
+
+  function addTrip(trip) {
+    load();
+    state.trips.unshift(trip);
+    if (state.trips.length > 200) state.trips.length = 200;
+    save();
+    return trip;
+  }
+
+  function deleteTrip(id) {
+    load();
+    state.trips = state.trips.filter(t => t.id !== id);
+    save();
+  }
+
+  function getTrip(id) {
+    return load().trips.find(t => t.id === id) || null;
+  }
+
+  /* ---- scoring ----
+   * 100-point smoothness score, penalties normalized per 10 km so short
+   * hops aren't graded more harshly than long drives.
+   */
+  function scoreTrip(t) {
+    // floor at 3 km so a couple of events on a short hop doesn't nuke the grade
+    const km = Math.max(3, t.distanceM / 1000);
+    const per10 = n => (n / km) * 10;
+    const penalty =
+      per10(t.events.hardBrakes) * 2.5 +
+      per10(t.events.hardAccels) * 2.0 +
+      per10(t.events.hardCorners) * 1.5;
+    return Math.round(U.clamp(100 - penalty, 0, 100));
+  }
+
+  function grade(score) {
+    if (score >= 97) return 'A+';
+    if (score >= 92) return 'A';
+    if (score >= 85) return 'B+';
+    if (score >= 78) return 'B';
+    if (score >= 70) return 'C';
+    if (score >= 60) return 'D';
+    return 'F';
+  }
+
+  /* ---- aggregates ---- */
+
+  function totals(sinceTs) {
+    const trips = load().trips.filter(t => !sinceTs || t.startedAt >= sinceTs);
+    const agg = {
+      trips: trips.length,
+      distanceM: 0,
+      timeMs: 0,
+      movingMs: 0,
+      maxSpeedMs: 0,
+      bestScore: 0,
+      avgScore: 0,
+      longestM: 0,
+      events: { hardAccels: 0, hardBrakes: 0, hardCorners: 0, stops: 0 },
+      maxG: 0
+    };
+    let wSum = 0, wScore = 0;
+    for (const t of trips) {
+      agg.distanceM += t.distanceM;
+      agg.timeMs += t.durationMs;
+      agg.movingMs += t.movingMs || t.durationMs;
+      agg.maxSpeedMs = Math.max(agg.maxSpeedMs, t.maxSpeedMs);
+      agg.bestScore = Math.max(agg.bestScore, t.score);
+      agg.longestM = Math.max(agg.longestM, t.distanceM);
+      agg.maxG = Math.max(agg.maxG, t.maxG || 0);
+      for (const k in agg.events) agg.events[k] += (t.events && t.events[k]) || 0;
+      const w = Math.max(0.5, t.distanceM / 1000);
+      wSum += w; wScore += w * t.score;
+    }
+    agg.avgScore = wSum ? Math.round(wScore / wSum) : 0;
+    return agg;
+  }
+
+  function streakDays() {
+    const days = new Set(load().trips.map(t => new Date(t.startedAt).toDateString()));
+    let streak = 0;
+    const d = new Date();
+    // allow the streak to count if today has no trip yet but yesterday does
+    if (!days.has(d.toDateString())) d.setDate(d.getDate() - 1);
+    while (days.has(d.toDateString())) { streak++; d.setDate(d.getDate() - 1); }
+    return streak;
+  }
+
+  /* ---- rank tiers (progression by lifetime distance) ---- */
+
+  const TIERS = [
+    { name: 'Rookie',   icon: '🔰', atKm: 0 },
+    { name: 'Bronze',   icon: '🥉', atKm: 50 },
+    { name: 'Silver',   icon: '🥈', atKm: 200 },
+    { name: 'Gold',     icon: '🥇', atKm: 500 },
+    { name: 'Platinum', icon: '💠', atKm: 1500 },
+    { name: 'Apex',     icon: '👑', atKm: 5000 }
+  ];
+
+  function tier(distanceM) {
+    const km = distanceM / 1000;
+    let cur = TIERS[0], next = null;
+    for (let i = 0; i < TIERS.length; i++) {
+      if (km >= TIERS[i].atKm) cur = TIERS[i];
+      else { next = TIERS[i]; break; }
+    }
+    const base = cur.atKm, ceil = next ? next.atKm : cur.atKm;
+    const progress = next ? U.clamp((km - base) / (ceil - base), 0, 1) : 1;
+    return { ...cur, next, progress, km };
+  }
+
+  /* ---- achievements ---- */
+
+  function achievements() {
+    const t = totals();
+    const trips = load().trips;
+    const hasNight = trips.some(x => {
+      const h = new Date(x.startedAt).getHours();
+      return h >= 22 || h < 4;
+    });
+    const fast = (ms) => trips.some(x => x.maxSpeedMs >= ms);
+    const smoothLong = trips.some(x => x.score >= 95 && x.distanceM >= 5000);
+    return [
+      { id: 'first',    icon: '🎉', name: 'First Trip',      desc: 'Complete your first drive',              earned: t.trips >= 1 },
+      { id: 'ten',      icon: '🔟', name: 'Regular',          desc: 'Complete 10 trips',                      earned: t.trips >= 10 },
+      { id: 'fifty',    icon: '🏋️', name: 'Road Warrior',     desc: 'Complete 50 trips',                      earned: t.trips >= 50 },
+      { id: 'highway',  icon: '🛣️', name: 'Highway Legal',    desc: 'Reach highway speed (60+ mph)',          earned: fast(26.8) },
+      { id: 'century',  icon: '💯', name: 'Century Club',     desc: '100 km lifetime distance',               earned: t.distanceM >= 100000 },
+      { id: 'grand',    icon: '🌍', name: 'Globetrotter',     desc: '1,000 km lifetime distance',             earned: t.distanceM >= 1000000 },
+      { id: 'marathon', icon: '🏜️', name: 'Long Hauler',      desc: 'A single trip of 100+ km',               earned: t.longestM >= 100000 },
+      { id: 'smooth',   icon: '🧈', name: 'Smooth Operator',  desc: 'Score 95+ on a 5 km+ trip',              earned: smoothLong },
+      { id: 'night',    icon: '🦉', name: 'Night Owl',        desc: 'Drive between 10 PM and 4 AM',           earned: hasNight },
+      { id: 'streak3',  icon: '🔥', name: 'On a Streak',      desc: 'Drive 3 days in a row',                  earned: streakDays() >= 3 },
+      { id: 'hour',     icon: '⏱️', name: 'Endurance',        desc: '10 hours total drive time',              earned: t.timeMs >= 36e6 },
+      { id: 'clean',    icon: '✨', name: 'Flawless',         desc: 'A perfect 100 score trip',               earned: t.bestScore >= 100 }
+    ];
+  }
+
+  /* ---- misc ---- */
+
+  function tripName(startedAt) {
+    const h = new Date(startedAt).getHours();
+    if (h >= 5 && h < 12) return { name: 'Morning Drive', icon: '🌅' };
+    if (h >= 12 && h < 17) return { name: 'Afternoon Drive', icon: '☀️' };
+    if (h >= 17 && h < 21) return { name: 'Evening Drive', icon: '🌆' };
+    return { name: 'Night Drive', icon: '🌙' };
+  }
+
+  function exportJSON() {
+    return JSON.stringify(load(), null, 2);
+  }
+
+  function resetAll() {
+    state = defaults();
+    save();
+  }
+
+  return {
+    load, save, addTrip, deleteTrip, getTrip,
+    scoreTrip, grade, totals, streakDays, tier, achievements,
+    tripName, exportJSON, resetAll,
+    get profile() { return load().profile; },
+    get settings() { return load().settings; },
+    get trips() { return load().trips; }
+  };
+})();
+
+</script>
+<script>
+/* TripRanked — GPS trip engine.
+ *
+ * Consumes GeolocationPosition fixes (real watchPosition or injected by the
+ * demo simulator — identical pipeline either way), smooths speed, accumulates
+ * distance/time, estimates longitudinal & lateral g from kinematics, and
+ * detects driving events: hard acceleration, hard braking, hard cornering
+ * and full stops.
+ */
+'use strict';
+
+const Tracker = (() => {
+  const T = () => window.TR_CONFIG.thresholds;
+
+  let s = null;          // live trip state (null when idle)
+  let watchId = null;
+  let demoMode = false;
+
+  const gps = { status: 'off', accuracy: null, error: '' }; // off|acquiring|ok|weak|denied|error
+
+  function blank(now) {
+    return {
+      startedAt: now,
+      lastFixAt: 0,
+      // last accepted sample
+      lat: null, lon: null, t: 0,
+      // motion state
+      speedMs: 0,          // smoothed
+      rawSpeedMs: 0,
+      accel: 0,            // smoothed longitudinal m/s²
+      heading: NaN,
+      headingOk: false,
+      gLat: 0, gLon: 0,
+      // accumulators
+      distanceM: 0,
+      movingMs: 0,
+      maxSpeedMs: 0,
+      maxG: 0,
+      samples: 0,
+      // events
+      events: { hardAccels: 0, hardBrakes: 0, hardCorners: 0, stops: 0 },
+      cooldown: { accel: 0, brake: 0, corner: 0 },
+      hold: { accel: 0, brake: 0, corner: 0 },   // sustained-condition timers (s)
+      stopped: true,
+      stopHold: 0, moveHold: 0, hasMoved: false,
+      // recordings
+      path: [],            // [lat, lon, tRelSec, speedMs]
+      speeds: [],          // [tRelSec, speedMs]
+      pathT0: null,
+      lastPathT: -1e9, lastPathLat: null, lastPathLon: null,
+      lastSpeedT: -1e9
+    };
+  }
+
+  /* ---- the sample pipeline ---- */
+
+  function process(lat, lon, tMs, rawSpd, rawHeading, accuracy) {
+    if (!s) return;
+    const th = T();
+
+    if (accuracy != null && accuracy > th.maxAccuracyM) {
+      gps.status = 'weak'; gps.accuracy = accuracy;
+      return; // fix too sloppy to trust
+    }
+    gps.status = 'ok'; gps.accuracy = accuracy;
+    s.lastFixAt = Date.now();
+
+    // First accepted fix — anchor only.
+    if (s.lat === null) {
+      s.lat = lat; s.lon = lon; s.t = tMs; s.pathT0 = tMs;
+      recordPath(lat, lon, 0, 0);
+      s.samples++;
+      return;
+    }
+
+    let dt = (tMs - s.t) / 1000;
+    if (dt <= 0.05) return;                    // duplicate / out-of-order fix
+    if (dt > 10) {                             // signal gap — re-anchor, no phantom distance
+      s.lat = lat; s.lon = lon; s.t = tMs;
+      return;
+    }
+
+    const d = U.haversine(s.lat, s.lon, lat, lon);
+
+    // Derived or reported speed (m/s)
+    let v = (rawSpd != null && isFinite(rawSpd) && rawSpd >= 0) ? rawSpd : d / dt;
+    // Physically implausible jump → clamp to a 12 m/s² envelope
+    const maxDelta = 12 * dt;
+    v = U.clamp(v, Math.max(0, s.rawSpeedMs - maxDelta), s.rawSpeedMs + maxDelta);
+    s.rawSpeedMs = v;
+
+    // Smooth speed (time-aware EMA, tau ≈ 1.2 s)
+    const aV = 1 - Math.exp(-dt / 1.2);
+    const prevSmooth = s.speedMs;
+    s.speedMs = U.lerp(s.speedMs, v, aV);
+    if (s.speedMs < 0.15) s.speedMs = 0;
+
+    // Longitudinal acceleration (smoothed, tau ≈ 0.8 s)
+    const rawA = (s.speedMs - prevSmooth) / dt;
+    const aA = 1 - Math.exp(-dt / 0.8);
+    s.accel = U.lerp(s.accel, rawA, aA);
+    s.gLon = s.accel / 9.81;
+
+    // Heading + lateral g (only meaningful while actually moving).
+    // Smoothed (tau ≈ 0.5 s) and clamped so single-sample heading jumps —
+    // GPS noise, tunnels, the works — can't fake impossible g readings.
+    let hdg = (rawHeading != null && isFinite(rawHeading) && s.speedMs > 1.5) ? rawHeading
+      : (d > 3 ? U.bearing(s.lat, s.lon, lat, lon) : NaN);
+    let gLatRaw = 0;
+    if (isFinite(hdg)) {
+      if (s.headingOk && s.speedMs > 4) {
+        const rate = U.clamp(U.angDiff(s.heading, hdg) / dt, -60, 60);  // deg/s
+        gLatRaw = U.clamp((s.speedMs * rate * Math.PI / 180) / 9.81, -1.3, 1.3);
+      }
+      s.heading = hdg; s.headingOk = true;
+    }
+    const aG = 1 - Math.exp(-dt / 0.5);
+    s.gLat = U.lerp(s.gLat, gLatRaw, aG);
+    s.maxG = Math.max(s.maxG, Math.abs(s.gLat), Math.abs(s.gLon));
+
+    // Distance & moving time (ignore GPS drift while parked)
+    if (s.speedMs > th.moveSpeed && d < 120) {
+      s.distanceM += d;
+      s.movingMs += dt * 1000;
+    }
+
+    // Top speed (trust good fixes only)
+    if (accuracy == null || accuracy <= 25) {
+      s.maxSpeedMs = Math.max(s.maxSpeedMs, s.speedMs);
+    }
+
+    // ---- events (sustained ≥0.5 s + per-type cooldown) ----
+    const now = tMs / 1000;
+    const sustain = (key, cond) => {
+      s.hold[key] = cond ? s.hold[key] + dt : 0;
+      if (s.hold[key] >= 0.5 && now - s.cooldown[key] > th.eventCooldownMs / 1000) {
+        s.cooldown[key] = now;
+        s.hold[key] = 0;
+        return true;
+      }
+      return false;
+    };
+    if (sustain('accel', s.accel > th.hardAccel && s.speedMs > 2)) s.events.hardAccels++;
+    if (sustain('brake', s.accel < th.hardBrake && s.speedMs > 2)) s.events.hardBrakes++;
+    if (sustain('corner', Math.abs(s.gLat) > th.hardCornerG && s.speedMs > 5)) s.events.hardCorners++;
+
+    // Stops: moving → standstill (2.5 s under stopSpeed)
+    if (s.speedMs < th.stopSpeed) {
+      s.moveHold = 0;
+      s.stopHold += dt;
+      if (!s.stopped && s.stopHold >= 2.5) {
+        s.stopped = true;
+        if (s.hasMoved) s.events.stops++;
+      }
+    } else {
+      s.stopHold = 0;
+      s.moveHold += dt;
+      if (s.moveHold >= 1) {
+        s.stopped = false;
+        if (s.speedMs > th.moveSpeed) s.hasMoved = true;
+      }
+    }
+
+    // ---- recordings ----
+    if (s.pathT0 == null) s.pathT0 = tMs;
+    const tRel = (tMs - s.pathT0) / 1000;
+    const dRec = (s.lastPathLat != null)
+      ? U.haversine(s.lastPathLat, s.lastPathLon, lat, lon) : Infinity;
+    if (dRec >= 15 || tRel - s.lastPathT >= 5) recordPath(lat, lon, tRel, s.speedMs);
+    if (tRel - s.lastSpeedT >= 1) {
+      s.speeds.push([Math.round(tRel), +s.speedMs.toFixed(2)]);
+      s.lastSpeedT = tRel;
+      if (s.speeds.length > 1800) s.speeds = s.speeds.filter((_, i) => i % 2 === 0);
+    }
+
+    s.lat = lat; s.lon = lon; s.t = tMs;
+    s.samples++;
+  }
+
+  function recordPath(lat, lon, tRel, spd) {
+    s.path.push([+lat.toFixed(6), +lon.toFixed(6), Math.round(tRel), +spd.toFixed(1)]);
+    s.lastPathT = tRel; s.lastPathLat = lat; s.lastPathLon = lon;
+    if (s.path.length > 2400) {
+      const keepLast = s.path.pop();
+      s.path = s.path.filter((_, i) => i % 2 === 0);
+      s.path.push(keepLast);
+    }
+  }
+
+  function onPosition(pos) {
+    const c = pos.coords;
+    process(c.latitude, c.longitude, pos.timestamp, c.speed, c.heading, c.accuracy);
+  }
+
+  function onError(err) {
+    if (!s) return;
+    gps.status = (err && err.code === 1) ? 'denied' : 'error';
+    gps.error = err && err.message ? err.message : 'GPS unavailable';
+  }
+
+  /* ---- public API ---- */
+
+  function start(opts) {
+    if (s) return false;
+    demoMode = !!(opts && opts.demo);
+    s = blank(Date.now());
+    gps.status = demoMode ? 'ok' : 'acquiring';
+    gps.accuracy = null; gps.error = '';
+
+    if (!demoMode) {
+      if (!('geolocation' in navigator)) {
+        gps.status = 'error'; gps.error = 'Geolocation is not supported on this device';
+      } else {
+        watchId = navigator.geolocation.watchPosition(onPosition, onError, {
+          enableHighAccuracy: true, maximumAge: 0, timeout: 15000
+        });
+      }
+    }
+    return true;
+  }
+
+  // Simulator entry point — same pipeline as real GPS.
+  function injectPosition(pos) {
+    if (!s || !demoMode) return;
+    onPosition(pos);
+  }
+
+  function snapshot() {
+    if (!s) return null;
+    const elapsed = Date.now() - s.startedAt;
+    return {
+      demo: demoMode,
+      elapsedMs: elapsed,
+      movingMs: s.movingMs,
+      speedMs: s.speedMs,
+      distanceM: s.distanceM,
+      maxSpeedMs: s.maxSpeedMs,
+      avgSpeedMs: s.movingMs > 3000 ? s.distanceM / (s.movingMs / 1000) : 0,
+      accel: s.accel,
+      gLat: s.gLat, gLon: s.gLon, maxG: s.maxG,
+      heading: s.heading, headingOk: s.headingOk,
+      stopped: s.stopped,
+      events: { ...s.events },
+      samples: s.samples,
+      path: s.path,
+      gps: { ...gps, stale: !demoMode && s.lastFixAt > 0 && (Date.now() - s.lastFixAt > 8000) }
+    };
+  }
+
+  function stop() {
+    if (!s) return null;
+    if (watchId != null) { navigator.geolocation.clearWatch(watchId); watchId = null; }
+    const endAt = Date.now();
+    const raw = {
+      startedAt: s.startedAt,
+      endedAt: endAt,
+      durationMs: endAt - s.startedAt,
+      movingMs: Math.round(s.movingMs),
+      distanceM: Math.round(s.distanceM),
+      maxSpeedMs: +s.maxSpeedMs.toFixed(2),
+      avgSpeedMs: s.movingMs > 3000 ? +(s.distanceM / (s.movingMs / 1000)).toFixed(2) : 0,
+      maxG: +s.maxG.toFixed(2),
+      events: { ...s.events },
+      path: s.path,
+      speeds: s.speeds,
+      demo: demoMode,
+      samples: s.samples
+    };
+    s = null;
+    gps.status = 'off'; gps.accuracy = null;
+    demoMode = false;
+    return raw;
+  }
+
+  const isActive = () => !!s;
+  const isDemo = () => demoMode;
+
+  return { start, stop, snapshot, injectPosition, isActive, isDemo, gps };
+})();
+
+</script>
+<script>
+/* TripRanked — demo drive simulator.
+ *
+ * Generates a realistic ~2.5 minute city-to-highway drive in real time and
+ * feeds synthetic GeolocationPosition fixes through the exact same tracker
+ * pipeline that real GPS uses. Lets you experience the whole app at a desk
+ * (or anywhere without GPS permission).
+ */
+'use strict';
+
+const Simulator = (() => {
+  // Each segment ramps speed linearly to `to` m/s over `dur` seconds while
+  // turning at `turn` deg/s. The profile is choreographed to trigger a small,
+  // predictable set of driving events.
+  const SCRIPT = [
+    { to: 0,    dur: 3,  turn: 0 },     // parked, engine on
+    { to: 13.4, dur: 7,  turn: 0 },     // pull away to 30 mph
+    { to: 13.4, dur: 10, turn: 0 },     // city cruise
+    { to: 9,    dur: 3,  turn: 0 },     // ease off for the turn
+    { to: 9,    dur: 5,  turn: 17 },    // gentle right-hander
+    { to: 13.4, dur: 5,  turn: 0 },     // back up to speed
+    { to: 0,    dur: 2.6, turn: 0 },    // HARD BRAKE — light went yellow
+    { to: 0,    dur: 6,  turn: 0 },     // red light (full stop)
+    { to: 15.6, dur: 5,  turn: 0 },     // HARD ACCEL off the line
+    { to: 15.6, dur: 8,  turn: 5 },     // sweeping avenue
+    { to: 15.6, dur: 7,  turn: -5 },
+    { to: 12,   dur: 3,  turn: 0 },
+    { to: 12,   dur: 4,  turn: 25 },    // HARD CORNER onto the on-ramp
+    { to: 31,   dur: 14, turn: 3 },     // ramp up to 70 mph
+    { to: 31,   dur: 12, turn: 0 },     // highway
+    { to: 31,   dur: 2,  turn: -5 },    // lane change
+    { to: 31,   dur: 2,  turn: 5 },
+    { to: 31,   dur: 12, turn: 0 },     // highway
+    { to: 17,   dur: 3,  turn: 0 },     // HARD BRAKE — sudden traffic
+    { to: 29,   dur: 6,  turn: 0 },     // traffic clears
+    { to: 29,   dur: 8,  turn: 0 },
+    { to: 10,   dur: 8,  turn: 4 },     // take the exit
+    { to: 10,   dur: 4,  turn: 18 },    // exit loop
+    { to: 11,   dur: 8,  turn: 0 },     // surface street
+    { to: 0,    dur: 5,  turn: 0 },     // arrive
+    { to: 0,    dur: 6,  turn: 0 }      // parked
+  ];
+
+  const TICK_MS = 400;
+  const EARTH = 6371000;
+
+  let timer = null;
+  let onDone = null;
+  let st = null;
+
+  function start(opts) {
+    stopTimer();
+    onDone = opts && opts.onDone;
+    const rng = U.mulberry32((Date.now() & 0xffffffff) >>> 0);
+    st = {
+      seg: 0,
+      segT: 0,
+      v: 0,
+      vSeg0: 0,
+      heading: 20 + rng() * 320,
+      lat: 34.0522 + (rng() - 0.5) * 0.2,   // somewhere around LA
+      lon: -118.2437 + (rng() - 0.5) * 0.2,
+      rng
+    };
+    timer = setInterval(tick, TICK_MS);
+  }
+
+  function tick() {
+    if (!st) return;
+    const dt = TICK_MS / 1000;
+    const seg = SCRIPT[st.seg];
+    if (!seg) { finish(); return; }
+
+    st.segT += dt;
+    const f = U.clamp(st.segT / seg.dur, 0, 1);
+    st.v = Math.max(0, U.lerp(st.vSeg0, seg.to, f));
+
+    // integrate heading & position
+    st.heading = (st.heading + seg.turn * dt + 360) % 360;
+    const dist = st.v * dt;
+    const rad = Math.PI / 180;
+    const dLat = (dist * Math.cos(st.heading * rad)) / EARTH / rad;
+    const dLon = (dist * Math.sin(st.heading * rad)) / (EARTH * Math.cos(st.lat * rad)) / rad;
+    st.lat += dLat;
+    st.lon += dLon;
+
+    // a few meters of GPS jitter, like the real thing
+    const jitter = () => (st.rng() - 0.5) * 0.000018;
+    const accuracy = 5 + st.rng() * 7;
+
+    Tracker.injectPosition({
+      timestamp: Date.now(),
+      coords: {
+        latitude: st.lat + jitter(),
+        longitude: st.lon + jitter(),
+        speed: Math.max(0, st.v + (st.rng() - 0.5) * 0.4),
+        heading: st.v > 1 ? st.heading : NaN,
+        accuracy,
+        altitude: null, altitudeAccuracy: null
+      }
+    });
+
+    if (st.segT >= seg.dur) {
+      st.seg++;
+      st.segT = 0;
+      st.vSeg0 = st.v;
+    }
+  }
+
+  function finish() {
+    stopTimer();
+    const cb = onDone; onDone = null; st = null;
+    if (cb) cb();
+  }
+
+  function stopTimer() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+
+  function stop() { stopTimer(); onDone = null; st = null; }
+
+  const isRunning = () => !!timer;
+
+  return { start, stop, isRunning };
+})();
+
+</script>
+<script>
+/* TripRanked — leaderboards.
+ *
+ * Boards: top speed · distance · trips, each over "this week" or "all time".
+ *
+ * Out of the box the global field is a deterministic simulated grid of 48
+ * drivers (stable identities, weekly-varying form) with YOUR real stats
+ * ranked among them. If Supabase is configured in js/config.js, the board
+ * switches to the real shared table instead and your stats are published
+ * to it after every saved trip.
+ */
+'use strict';
+
+const LB = (() => {
+  const FIRST = ['Aria', 'Mason', 'Keiko', 'Diego', 'Lena', 'Marco', 'Priya', 'Jonas', 'Zara',
+    'Felix', 'Nadia', 'Omar', 'Ivy', 'Hugo', 'Mila', 'Ravi', 'Sofia', 'Dmitri', 'Elif', 'Kwame',
+    'Hana', 'Lucas', 'Ingrid', 'Tomas', 'Amara'];
+  const HANDLE_A = ['Turbo', 'Apex', 'Nitro', 'Drift', 'Midnight', 'Redline', 'Ghost', 'Vortex',
+    'Torque', 'Slipstream', 'Octane', 'Boost'];
+  const HANDLE_B = ['Wolf', 'Falcon', 'Kid', 'Baron', 'Queen', 'Runner', 'Fox', 'Nomad',
+    'Pilot', 'Viper', 'Hawk', 'Rex'];
+  const FLAGS = ['🇺🇸', '🇩🇪', '🇯🇵', '🇬🇧', '🇮🇹', '🇫🇷', '🇧🇷', '🇨🇦', '🇦🇺', '🇪🇸', '🇲🇽', '🇰🇷',
+    '🇳🇱', '🇸🇪', '🇵🇱', '🇮🇳', '🇿🇦', '🇦🇷', '🇳🇴', '🇨🇭'];
+  const AVATARS = ['🏎️', '🚗', '🚙', '🛻', '🚘', '🚕', '🏍️', '🚓'];
+
+  let botCache = null;
+
+  function bots() {
+    if (botCache && botCache.week === U.isoWeek()) return botCache.list;
+    const week = U.isoWeek();
+    const list = [];
+    for (let i = 0; i < 48; i++) {
+      const r = U.mulberry32(U.hashStr('tripranked-grid-' + i));
+      const rw = U.mulberry32(U.hashStr('week-' + week + '-' + i));
+      const name = r() < 0.55
+        ? FIRST[Math.floor(r() * FIRST.length)] + ' ' + 'ABCDEFGHKLMNPRSTVW'[Math.floor(r() * 18)] + '.'
+        : HANDLE_A[Math.floor(r() * HANDLE_A.length)] + HANDLE_B[Math.floor(r() * HANDLE_B.length)];
+
+      const distanceKm = 40 + Math.pow(r(), 2.2) * 7000;         // long-tail veterans
+      const trips = Math.max(3, Math.round(distanceKm / (7 + r() * 26)));
+      const topKmh = 96 + Math.pow(r(), 1.4) * 78;               // 96–174 km/h
+
+      const activity = 0.15 + rw() * 0.85;                        // weekly form
+      const weekKm = Math.min(distanceKm * 0.05, (20 + rw() * 320) * activity);
+      const weekTrips = Math.max(activity > 0.3 ? 1 : 0, Math.round(weekKm / (9 + rw() * 20)));
+      const weekTopKmh = topKmh * (0.72 + rw() * 0.26);
+
+      list.push({
+        id: 'grid-' + i,
+        name,
+        flag: FLAGS[Math.floor(r() * FLAGS.length)],
+        emoji: AVATARS[Math.floor(r() * AVATARS.length)],
+        all: { speed: topKmh / 3.6, distance: distanceKm * 1000, trips },
+        week: { speed: weekTrips ? weekTopKmh / 3.6 : 0, distance: weekKm * 1000, trips: weekTrips }
+      });
+    }
+    botCache = { week, list };
+    return list;
+  }
+
+  function playerEntry(period) {
+    const t = period === 'week' ? Store.totals(U.weekStart()) : Store.totals();
+    const p = Store.profile;
+    return {
+      id: 'you',
+      name: p.name,
+      flag: '🏁',
+      emoji: p.emoji,
+      isYou: true,
+      all: null,
+      stats: { speed: t.maxSpeedMs, distance: t.distanceM, trips: t.trips }
+    };
+  }
+
+  /* ---- Supabase adapter (optional) ---- */
+
+  const sb = () => {
+    const c = window.TR_CONFIG || {};
+    return (c.supabaseUrl && c.supabaseAnonKey)
+      ? { url: c.supabaseUrl.replace(/\/$/, ''), key: c.supabaseAnonKey }
+      : null;
+  };
+
+  async function sbFetch(pathAndQuery, opts = {}) {
+    const cfg = sb();
+    const res = await fetch(`${cfg.url}/rest/v1/${pathAndQuery}`, {
+      ...opts,
+      headers: {
+        apikey: cfg.key,
+        Authorization: `Bearer ${cfg.key}`,
+        'Content-Type': 'application/json',
+        ...(opts.headers || {})
+      }
+    });
+    if (!res.ok) throw new Error('Supabase ' + res.status);
+    return res.status === 204 ? null : res.json();
+  }
+
+  // Publish your current totals (called after each saved trip / profile edit).
+  async function submit() {
+    if (!sb()) return false;
+    const all = Store.totals();
+    const wk = Store.totals(U.weekStart());
+    const p = Store.profile;
+    const row = {
+      tag: p.tag,
+      name: p.name,
+      emoji: p.emoji,
+      top_speed_ms: all.maxSpeedMs,
+      distance_m: Math.round(all.distanceM),
+      trips: all.trips,
+      week_key: U.isoWeek(),
+      week_top_speed_ms: wk.maxSpeedMs,
+      week_distance_m: Math.round(wk.distanceM),
+      week_trips: wk.trips,
+      updated_at: new Date().toISOString()
+    };
+    try {
+      await sbFetch('leaderboard?on_conflict=tag', {
+        method: 'POST',
+        headers: { Prefer: 'resolution=merge-duplicates,return=minimal' },
+        body: JSON.stringify(row)
+      });
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  async function sbBoard(metric, period) {
+    const colMap = period === 'week'
+      ? { speed: 'week_top_speed_ms', distance: 'week_distance_m', trips: 'week_trips' }
+      : { speed: 'top_speed_ms', distance: 'distance_m', trips: 'trips' };
+    const col = colMap[metric];
+    let q = `leaderboard?select=tag,name,emoji,${col}&order=${col}.desc&limit=100`;
+    if (period === 'week') q += `&week_key=eq.${U.isoWeek()}`;
+    const rows = await sbFetch(q);
+    const myTag = Store.profile.tag;
+    return rows
+      .map(r => ({
+        id: r.tag, name: r.name, emoji: r.emoji || '🚗', flag: '',
+        isYou: r.tag === myTag, value: +r[col] || 0
+      }))
+      .filter(r => r.value > 0);
+  }
+
+  /* ---- public ---- */
+
+  // metric: 'speed' | 'distance' | 'trips'; period: 'week' | 'all'
+  // → { live: bool, rows: [{rank, name, emoji, flag, value, isYou}] }
+  async function board(metric, period) {
+    if (sb()) {
+      try {
+        let rows = await sbBoard(metric, period);
+        const you = playerEntry(period);
+        if (!rows.some(r => r.isYou) && you.stats[metric] > 0) {
+          rows.push({ id: 'you', name: you.name, emoji: you.emoji, flag: you.flag, isYou: true, value: you.stats[metric] });
+        }
+        rows.sort((a, b) => b.value - a.value);
+        rows.forEach((r, i) => (r.rank = i + 1));
+        return { live: true, rows };
+      } catch (_) { /* fall through to the simulated grid */ }
+    }
+
+    const you = playerEntry(period);
+    const rows = bots().map(b => {
+      const st = period === 'week' ? b.week : b.all;
+      return { id: b.id, name: b.name, emoji: b.emoji, flag: b.flag, isYou: false, value: st[metric] };
+    }).filter(r => r.value > 0);
+    rows.push({ id: 'you', name: you.name, emoji: you.emoji, flag: you.flag, isYou: true, value: you.stats[metric] });
+    rows.sort((a, b) => b.value - a.value);
+    rows.forEach((r, i) => (r.rank = i + 1));
+    return { live: false, rows };
+  }
+
+  const isLive = () => !!sb();
+
+  return { board, submit, isLive };
+})();
+
+</script>
+<script>
+/* TripRanked — shareable end-of-trip stat card (1080×1350 canvas → PNG). */
+'use strict';
+
+const ShareCard = (() => {
+  const W = 1080, H = 1350;
+  const FONT = "-apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function render(trip, profile, units) {
+    const cv = document.createElement('canvas');
+    cv.width = W; cv.height = H;
+    const ctx = cv.getContext('2d');
+
+    // backdrop
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, '#0d131b');
+    bg.addColorStop(0.55, '#0a0e13');
+    bg.addColorStop(1, '#0c1219');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // faint speed arcs top-right
+    ctx.save();
+    ctx.strokeStyle = 'rgba(61,214,140,.07)';
+    for (let i = 0; i < 5; i++) {
+      ctx.lineWidth = 26;
+      ctx.beginPath();
+      ctx.arc(W + 60, -60, 220 + i * 110, Math.PI * 0.5, Math.PI * 1.02);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // wordmark
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = '#3dd68c';
+    ctx.font = `900 54px ${FONT}`;
+    ctx.fillText('⚡ TRIPRANKED', 64, 118);
+    ctx.fillStyle = 'rgba(255,255,255,.55)';
+    ctx.font = `500 34px ${FONT}`;
+    const nm = Store.tripName(trip.startedAt);
+    ctx.fillText(`${nm.name}  ·  ${U.fmtDate(trip.startedAt)} ${U.fmtClock(trip.startedAt)}`, 64, 172);
+
+    // driver chip
+    ctx.font = `700 36px ${FONT}`;
+    const driver = `${profile.emoji} ${profile.name}  ·  ${profile.tag}`;
+    const dw = ctx.measureText(driver).width + 56;
+    ctx.fillStyle = 'rgba(255,255,255,.06)';
+    roundRect(ctx, 64, 206, dw, 72, 36);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,.85)';
+    ctx.fillText(driver, 92, 254);
+
+    // hero: max speed
+    const spd = U.speed(trip.maxSpeedMs, units);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `900 300px ${FONT}`;
+    ctx.fillText(spd.v, 56, 620);
+    const vw = ctx.measureText(spd.v).width;
+    ctx.fillStyle = '#3dd68c';
+    ctx.font = `800 66px ${FONT}`;
+    ctx.fillText(spd.unit, 72 + vw, 616);
+    ctx.fillStyle = 'rgba(255,255,255,.5)';
+    ctx.font = `600 38px ${FONT}`;
+    ctx.fillText('TOP SPEED', 72 + vw, 550);
+
+    // route panel
+    ctx.fillStyle = 'rgba(255,255,255,.045)';
+    roundRect(ctx, 64, 680, W - 128, 330, 28);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.08)';
+    ctx.lineWidth = 2;
+    roundRect(ctx, 64, 680, W - 128, 330, 28);
+    ctx.stroke();
+    U.drawRoute(ctx, trip.path, 96, 700, W - 192, 290, { lineWidth: 7 });
+
+    // stat grid (2×2)
+    const stats = [
+      ['DISTANCE', `${U.dist(trip.distanceM, units).v} ${U.dist(trip.distanceM, units).unit}`],
+      ['DURATION', U.fmtDuration(trip.durationMs)],
+      ['AVG SPEED', `${U.speed(trip.avgSpeedMs, units).v} ${U.speed(trip.avgSpeedMs, units).unit}`],
+      ['SCORE', `${trip.score}  ·  ${trip.grade}`]
+    ];
+    const gx = 64, gy = 1046, gw = (W - 128 - 24) / 2, gh = 108;
+    stats.forEach((sItem, i) => {
+      const x = gx + (i % 2) * (gw + 24);
+      const y = gy + Math.floor(i / 2) * (gh + 20);
+      ctx.fillStyle = 'rgba(255,255,255,.045)';
+      roundRect(ctx, x, y, gw, gh, 22);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,.45)';
+      ctx.font = `700 26px ${FONT}`;
+      ctx.fillText(sItem[0], x + 30, y + 44);
+      ctx.fillStyle = i === 3 ? '#3dd68c' : '#ffffff';
+      ctx.font = `800 44px ${FONT}`;
+      ctx.fillText(sItem[1], x + 30, y + 90);
+    });
+
+    // footer
+    ctx.fillStyle = 'rgba(255,255,255,.35)';
+    ctx.font = `500 28px ${FONT}`;
+    ctx.fillText(trip.demo ? 'demo drive · tripranked' : 'tracked with tripranked', 64, H - 40);
+    const evTxt = `⚡${trip.events.hardAccels}  🛑${trip.events.hardBrakes}  ↩️${trip.events.hardCorners}  🚦${trip.events.stops}`;
+    ctx.textAlign = 'right';
+    ctx.fillText(evTxt, W - 64, H - 40);
+    ctx.textAlign = 'left';
+
+    return cv;
+  }
+
+  async function toBlob(canvas) {
+    return new Promise(res => canvas.toBlob(res, 'image/png'));
+  }
+
+  // Share via the native sheet when possible, otherwise download the PNG.
+  async function share(canvas, trip) {
+    const blob = await toBlob(canvas);
+    if (!blob) return 'error';
+    const file = new File([blob], `tripranked-${new Date(trip.startedAt).toISOString().slice(0, 10)}.png`,
+      { type: 'image/png' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], title: 'TripRanked drive' });
+        return 'shared';
+      } catch (e) {
+        if (e && e.name === 'AbortError') return 'cancelled';
+      }
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = file.name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    return 'downloaded';
+  }
+
+  return { render, share };
+})();
+
+</script>
+<script>
+/* TripRanked — application shell: screens, drive lifecycle, rendering. */
+'use strict';
+
+(() => {
+  const $ = U.$;
+
+  /* ────────────────────────── ui state ────────────────────────── */
+
+  const ui = {
+    screen: 'drive',
+    lbMetric: 'speed',
+    lbPeriod: 'week',
+    loop: null,
+    prevEvents: null,
+    gaugeMax: 0,        // in display units
+    wakeLock: null,
+    installEvt: null,
+    lbSeq: 0
+  };
+
+  const units = () => Store.settings.units;
+
+  /* ────────────────────────── toast & modal ────────────────────────── */
+
+  let toastTimer = null;
+  function toast(msg, ms = 2400) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.remove('hidden');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.add('hidden'), ms);
+  }
+
+  let modalDismissable = true;
+  function openModal(html, opts = {}) {
+    modalDismissable = opts.dismissable !== false;
+    const back = $('#modalBack'), box = $('#modalBox');
+    box.innerHTML = html;
+    back.classList.remove('hidden');
+    return box;
+  }
+  function closeModal() {
+    $('#modalBack').classList.add('hidden');
+    $('#modalBox').innerHTML = '';
+  }
+
+  /* ────────────────────────── gauge ────────────────────────── */
+
+  const GAUGE = { cx: 130, cy: 115, r: 98, a0: 150, sweep: 240 };
+
+  function gaugePoint(angleDeg, radius) {
+    const a = angleDeg * Math.PI / 180;
+    return [GAUGE.cx + radius * Math.cos(a), GAUGE.cy + radius * Math.sin(a)];
+  }
+
+  function buildGauge() {
+    const u = units();
+    const base = u === 'kmh' ? 200 : 120;
+    const seen = Store.totals().maxSpeedMs * (u === 'kmh' ? U.MS_TO_KMH : U.MS_TO_MPH);
+    ui.gaugeMax = seen > base ? (u === 'kmh' ? 280 : 180) : base;
+
+    const [x0, y0] = gaugePoint(GAUGE.a0, GAUGE.r);
+    const [x1, y1] = gaugePoint(GAUGE.a0 + GAUGE.sweep, GAUGE.r);
+    const d = `M ${x0} ${y0} A ${GAUGE.r} ${GAUGE.r} 0 1 1 ${x1} ${y1}`;
+    $('#gaugeTrack').setAttribute('d', d);
+    $('#gaugeFill').setAttribute('d', d);
+    $('#gauge').setAttribute('viewBox', '0 0 260 190');
+
+    const step = u === 'kmh' ? 40 : 20;
+    const ticks = $('#gaugeTicks');
+    ticks.innerHTML = '';
+    for (let v = 0; v <= ui.gaugeMax; v += step) {
+      const ang = GAUGE.a0 + GAUGE.sweep * (v / ui.gaugeMax);
+      const [tx, ty] = gaugePoint(ang, GAUGE.r - 24);
+      const el = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      el.setAttribute('x', tx.toFixed(1));
+      el.setAttribute('y', (ty + 3.5).toFixed(1));
+      el.setAttribute('text-anchor', 'middle');
+      el.textContent = v;
+      ticks.appendChild(el);
+    }
+    $('#speedUnit').textContent = u === 'kmh' ? 'km/h' : 'mph';
+    setGauge(0);
+  }
+
+  function setGauge(displaySpeed) {
+    const pct = U.clamp(displaySpeed / ui.gaugeMax, 0, 1);
+    const fill = $('#gaugeFill');
+    fill.style.strokeDashoffset = (100 - pct * 100).toFixed(2);
+    // a zero-length dash still paints its round cap — hide the stray dot
+    fill.style.visibility = pct <= 0.004 ? 'hidden' : 'visible';
+    fill.classList.toggle('hot', pct > 0.72);
+  }
+
+  /* ────────────────────────── gps chip ────────────────────────── */
+
+  function setChip(cls, text) {
+    const chip = $('#gpsChip');
+    chip.className = 'chip ' + cls;
+    chip.textContent = text;
+  }
+
+  function updateChip(snap) {
+    if (!snap) { $('#gpsChip').className = 'chip chip-hidden'; return; }
+    if (snap.demo) return setChip('ok', '🧪 DEMO');
+    const g = snap.gps;
+    if (g.status === 'acquiring') return setChip('warn pulse', 'ACQUIRING GPS…');
+    if (g.status === 'denied') return setChip('bad', 'GPS DENIED');
+    if (g.status === 'error') return setChip('bad', 'GPS ERROR');
+    if (g.stale) return setChip('warn pulse', 'GPS LOST…');
+    if (g.status === 'weak') return setChip('warn', 'GPS WEAK');
+    return setChip('ok', `GPS ±${Math.round(g.accuracy || 0)}m`);
+  }
+
+  /* ────────────────────────── drive screen ────────────────────────── */
+
+  function fmtSpeedTile(ms) {
+    const s = U.speed(ms, units());
+    return `${s.v}<small> ${s.unit}</small>`;
+  }
+
+  function uiTick() {
+    const snap = Tracker.snapshot();
+    if (!snap) return;
+
+    const u = units();
+    const dispSpeed = snap.speedMs * (u === 'kmh' ? U.MS_TO_KMH : U.MS_TO_MPH);
+    $('#speedNow').textContent = Math.round(dispSpeed);
+    setGauge(dispSpeed);
+
+    $('#lvTime').textContent = U.fmtDuration(snap.elapsedMs);
+    const dd = U.dist(snap.distanceM, u);
+    $('#lvDist').innerHTML = `${dd.v}<small> ${dd.unit}</small>`;
+    $('#lvAvg').innerHTML = fmtSpeedTile(snap.avgSpeedMs);
+    $('#lvMax').innerHTML = fmtSpeedTile(snap.maxSpeedMs);
+
+    // heading + state line
+    const hdg = snap.headingOk && isFinite(snap.heading)
+      ? `${U.compass(snap.heading)} ${Math.round(snap.heading)}°` : '—';
+    $('#headingLbl').textContent = hdg;
+    $('#stateLbl').textContent = snap.demo
+      ? 'Demo drive in progress'
+      : snap.gps.status === 'acquiring' ? 'Waiting for GPS fix…'
+      : snap.gps.status === 'denied' ? 'Location permission needed'
+      : snap.stopped ? 'Stopped' : 'Moving';
+
+    // g-force bubble
+    const gx = U.clamp(snap.gLat, -1, 1) * 30;
+    const gy = U.clamp(snap.gLon, -1, 1) * 30;
+    const dot = $('#gDot');
+    dot.style.transform = `translate(calc(-50% + ${gx.toFixed(1)}px), calc(-50% + ${gy.toFixed(1)}px))`;
+    const gNow = Math.max(Math.abs(snap.gLat), Math.abs(snap.gLon));
+    dot.classList.toggle('hard', gNow > 0.35);
+    $('#gVal').textContent = gNow.toFixed(2);
+
+    // event counters (flash on increment)
+    const map = { hardAccels: 'evA', hardBrakes: 'evB', hardCorners: 'evC', stops: 'evS' };
+    for (const k in map) {
+      const el = $('#' + map[k]);
+      el.textContent = snap.events[k];
+      if (ui.prevEvents && snap.events[k] > ui.prevEvents[k]) {
+        const chip = el.closest('.ev-chip');
+        chip.classList.remove('flash');
+        void chip.offsetWidth;
+        chip.classList.add('flash');
+        U.haptic(30);
+      }
+    }
+    ui.prevEvents = snap.events;
+
+    // permission trouble → help panel
+    if (!snap.demo && snap.gps.status === 'denied') {
+      const help = $('#gpsHelp');
+      if (help.classList.contains('hidden')) {
+        help.innerHTML = 'Location access is blocked, so speed can\'t be tracked. Enable location for this site in your browser settings — or end this trip and hit <b>Try a demo drive</b> to see TripRanked in action.';
+        help.classList.remove('hidden');
+      }
+    }
+
+    updateChip(snap);
+  }
+
+  async function grabWakeLock() {
+    if (!Store.settings.keepAwake || !('wakeLock' in navigator)) return;
+    try {
+      ui.wakeLock = await navigator.wakeLock.request('screen');
+    } catch (_) { /* not critical */ }
+  }
+  function releaseWakeLock() {
+    if (ui.wakeLock) { ui.wakeLock.release().catch(() => {}); ui.wakeLock = null; }
+  }
+
+  function startDrive(demo) {
+    if (Tracker.isActive()) return;
+    ui.prevEvents = null;
+    if (!Tracker.start({ demo })) return;
+    if (demo) Simulator.start({ onDone: () => endDrive(true) });
+
+    $('#btnStart').classList.add('hidden');
+    $('#btnDemo').classList.add('hidden');
+    $('#btnEnd').classList.remove('hidden');
+    $('#gpsHelp').classList.add('hidden');
+    $('#tabbar .tab[data-screen="drive"]').insertAdjacentHTML('beforeend', '<i class="rec-dot"></i>');
+
+    grabWakeLock();
+    U.haptic([40, 60, 40]);
+    ui.loop = setInterval(uiTick, 200);
+    uiTick();
+    showScreen('drive');
+    if (demo) toast('🧪 Demo drive started — sit back and watch');
+  }
+
+  function resetDriveUi() {
+    clearInterval(ui.loop); ui.loop = null;
+    releaseWakeLock();
+    $('#btnStart').classList.remove('hidden');
+    $('#btnDemo').classList.remove('hidden');
+    $('#btnEnd').classList.add('hidden');
+    const rec = $('#tabbar .rec-dot');
+    if (rec) rec.remove();
+    $('#speedNow').textContent = '0';
+    setGauge(0);
+    $('#stateLbl').textContent = 'Ready';
+    $('#headingLbl').textContent = '—';
+    updateChip(null);
+  }
+
+  function endDrive(autoFinished) {
+    if (!Tracker.isActive()) return;
+    Simulator.stop();
+    const raw = Tracker.stop();
+    resetDriveUi();
+    U.haptic(60);
+    if (!raw) return;
+
+    if (raw.samples < 3) {
+      toast('No GPS data was recorded — nothing to save');
+      return;
+    }
+    if (raw.distanceM < 40 && raw.durationMs < 20000) {
+      toast('Trip too short to score — not saved');
+      return;
+    }
+
+    const nm = Store.tripName(raw.startedAt);
+    const trip = {
+      id: U.uid(),
+      name: nm.name,
+      icon: nm.icon,
+      ...raw,
+      score: 0,
+      grade: ''
+    };
+    trip.score = Store.scoreTrip(trip);
+    trip.grade = Store.grade(trip.score);
+    showSummary(trip, autoFinished);
+  }
+
+  /* ────────────────────────── summary & detail modals ────────────────────────── */
+
+  function scoreClass(score) {
+    return score >= 85 ? 'good' : score >= 65 ? 'mid' : 'bad';
+  }
+
+  function statTile(label, valueHtml) {
+    return `<div class="tile"><div class="tile-label">${label}</div><div class="tile-value">${valueHtml}</div></div>`;
+  }
+
+  function tripStatsHtml(trip) {
+    const u = units();
+    const d = U.dist(trip.distanceM, u);
+    return `
+      <div class="sum-grid">
+        ${statTile('Distance', `${d.v}<small> ${d.unit}</small>`)}
+        ${statTile('Duration', U.fmtDuration(trip.durationMs))}
+        ${statTile('Avg speed', fmtSpeedTile(trip.avgSpeedMs))}
+        ${statTile('Top speed', fmtSpeedTile(trip.maxSpeedMs))}
+      </div>
+      <div class="ev-strip">
+        ${statTile('⚡ Accel', trip.events.hardAccels)}
+        ${statTile('🛑 Brakes', trip.events.hardBrakes)}
+        ${statTile('↩️ Corners', trip.events.hardCorners)}
+        ${statTile('🚦 Stops', trip.events.stops)}
+      </div>`;
+  }
+
+  function paintRoute(canvas, trip) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    U.drawRoute(ctx, trip.path, 0, 0, w, h, {});
+  }
+
+  function paintSpeedGraph(canvas, trip) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    const pts = trip.speeds || [];
+    if (pts.length < 2) return;
+    const maxT = pts[pts.length - 1][0] || 1;
+    const maxV = Math.max(...pts.map(p => p[1]), 1);
+    const px = p => [8 + (p[0] / maxT) * (w - 16), h - 10 - (p[1] / maxV) * (h - 26)];
+
+    // area fill
+    ctx.beginPath();
+    ctx.moveTo(px(pts[0])[0], h - 10);
+    pts.forEach(p => ctx.lineTo(...px(p)));
+    ctx.lineTo(px(pts[pts.length - 1])[0], h - 10);
+    ctx.closePath();
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, 'rgba(61,214,140,.35)');
+    grad.addColorStop(1, 'rgba(61,214,140,.02)');
+    ctx.fillStyle = grad;
+    ctx.fill();
+    // line
+    ctx.beginPath();
+    pts.forEach((p, i) => i ? ctx.lineTo(...px(p)) : ctx.moveTo(...px(p)));
+    ctx.strokeStyle = '#3dd68c';
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+    // max speed label
+    const s = U.speed(maxV, units());
+    ctx.fillStyle = 'rgba(255,255,255,.5)';
+    ctx.font = '700 10px system-ui, sans-serif';
+    ctx.fillText(`peak ${s.v} ${s.unit}`, 10, 14);
+  }
+
+  function showSummary(trip, autoFinished) {
+    const box = openModal(`
+      <div class="modal-head">
+        <h3>${autoFinished ? '🏁 Demo complete' : '🏁 Trip complete'}</h3>
+      </div>
+      <div class="sum-hero">
+        <div class="sum-score">${trip.score}</div>
+        <div class="sum-grade ${scoreClass(trip.score)}">GRADE ${trip.grade}</div>
+        <div class="sum-sub">${trip.icon} ${trip.name} · ${U.fmtClock(trip.startedAt)}${trip.demo ? ' · 🧪 demo' : ''} · max ${trip.maxG.toFixed(2)}g</div>
+      </div>
+      <canvas class="route-canvas" id="sumRoute"></canvas>
+      ${tripStatsHtml(trip)}
+      <div class="modal-actions">
+        <button class="btn btn-primary btn-big" id="sumSave">💾 &nbsp;Save trip</button>
+        <div class="row2">
+          <button class="btn btn-soft" id="sumShare">📤 Share card</button>
+          <button class="btn btn-ghost" id="sumDiscard">🗑 Discard</button>
+        </div>
+      </div>
+    `, { dismissable: false });
+
+    paintRoute($('#sumRoute', box), trip);
+
+    $('#sumSave', box).onclick = () => {
+      Store.addTrip(trip);
+      LB.submit();
+      closeModal();
+      toast(`Saved · ${trip.icon} ${trip.name}`);
+      renderHistory();
+      renderProfile();
+      buildGauge();
+      showScreen('history');
+    };
+    $('#sumShare', box).onclick = async () => {
+      const res = await ShareCard.share(ShareCard.render(trip, Store.profile, units()), trip);
+      if (res === 'downloaded') toast('Card saved as PNG 🖼️');
+      else if (res === 'shared') toast('Shared 🚀');
+    };
+    $('#sumDiscard', box).onclick = () => { closeModal(); toast('Trip discarded'); };
+  }
+
+  function showTripDetail(id) {
+    const trip = Store.getTrip(id);
+    if (!trip) return;
+    const box = openModal(`
+      <div class="modal-head">
+        <h3>${trip.icon} ${trip.name}${trip.demo ? ' <span class="badge badge-demo">DEMO</span>' : ''}</h3>
+        <button class="modal-x" id="dX">✕</button>
+      </div>
+      <div class="sum-sub" style="margin-bottom:10px">${U.fmtDate(trip.startedAt)} · ${U.fmtClock(trip.startedAt)} → ${U.fmtClock(trip.endedAt)}</div>
+      <canvas class="route-canvas" id="detRoute"></canvas>
+      <canvas class="graph-canvas" id="detGraph"></canvas>
+      <div class="sum-hero" style="margin-bottom:10px">
+        <div class="sum-score" style="font-size:40px">${trip.score}</div>
+        <div class="sum-grade ${scoreClass(trip.score)}">GRADE ${trip.grade} · MAX ${trip.maxG.toFixed(2)}G</div>
+      </div>
+      ${tripStatsHtml(trip)}
+      <div class="modal-actions">
+        <button class="btn btn-soft" id="detShare">📤 Share card</button>
+        <button class="btn btn-ghost danger-link" id="detDel">Delete this trip</button>
+      </div>
+    `);
+    paintRoute($('#detRoute', box), trip);
+    paintSpeedGraph($('#detGraph', box), trip);
+    $('#dX', box).onclick = closeModal;
+    $('#detShare', box).onclick = async () => {
+      const res = await ShareCard.share(ShareCard.render(trip, Store.profile, units()), trip);
+      if (res === 'downloaded') toast('Card saved as PNG 🖼️');
+    };
+    $('#detDel', box).onclick = () => {
+      Store.deleteTrip(id);
+      LB.submit();
+      closeModal();
+      toast('Trip deleted');
+      renderHistory();
+      renderProfile();
+    };
+  }
+
+  /* ────────────────────────── leaderboard screen ────────────────────────── */
+
+  function lbValue(v) {
+    const u = units();
+    if (ui.lbMetric === 'speed') { const s = U.speed(v, u); return `${s.v}<small> ${s.unit}</small>`; }
+    if (ui.lbMetric === 'distance') { const d = U.dist(v, u, v < 16000 ? 1 : 0); return `${d.v}<small> ${d.unit}</small>`; }
+    return `${U.fmtInt(v)}<small> trips</small>`;
+  }
+
+  function lbRowHtml(r) {
+    const medal = ['🥇', '🥈', '🥉'][r.rank - 1];
+    return `
+      <div class="lb-row ${r.isYou ? 'you' : ''}">
+        <div class="lb-rank ${medal ? 'medal' : ''}">${medal || r.rank}</div>
+        <div class="lb-ava">${r.emoji}</div>
+        <div class="lb-name">${U.esc(r.name)}${r.flag ? `<span class="flag">${r.flag}</span>` : ''}${r.isYou ? '<span class="you-tag">YOU</span>' : ''}</div>
+        <div class="lb-val">${lbValue(r.value)}</div>
+      </div>`;
+  }
+
+  async function renderRanks() {
+    const seq = ++ui.lbSeq;
+    const body = $('#lbBody');
+    body.innerHTML = '<div class="lb-loading">Loading…</div>';
+    const { live, rows } = await LB.board(ui.lbMetric, ui.lbPeriod);
+    if (seq !== ui.lbSeq) return; // a newer request superseded this one
+
+    $('#lbMode').textContent = live ? '● LIVE' : 'GLOBAL GRID';
+
+    const top3 = rows.slice(0, 3);
+    const podium = top3.length === 3 ? `
+      <div class="podium">
+        ${[top3[1], top3[0], top3[2]].map((r, i) => `
+          <div class="pod ${['p2', 'p1', 'p3'][i]} ${r.isYou ? 'you-glow' : ''}">
+            <div class="pod-medal">${['🥈', '🥇', '🥉'][i]}</div>
+            <div class="pod-ava">${r.emoji}</div>
+            <div class="pod-name">${U.esc(r.name)}${r.isYou ? ' ⭐' : ''}</div>
+            <div class="pod-val">${lbValue(r.value)}</div>
+          </div>`).join('')}
+      </div>` : '';
+
+    const you = rows.find(r => r.isYou);
+    let list = rows.slice(3, 25);
+    let tail = '';
+    if (you && you.rank > 25) {
+      list = rows.slice(3, 22);
+      tail = `<div class="lb-gap">···</div>${lbRowHtml(you)}`;
+    }
+    const note = live
+      ? '<p class="lb-note">Live board — every driver on this deployment, ranked in real time.</p>'
+      : '<p class="lb-note">You\'re ranked against TripRanked\'s global grid of drivers. Their form shifts every week — drive more to climb. (Connect Supabase in js/config.js to race real people.)</p>';
+
+    body.innerHTML = podium + list.map(lbRowHtml).join('') + tail + note;
+  }
+
+  /* ────────────────────────── history screen ────────────────────────── */
+
+  function renderHistory() {
+    const trips = Store.trips;
+    const u = units();
+    $('#histCount').textContent = trips.length ? `${trips.length} TRIP${trips.length === 1 ? '' : 'S'}` : 'NO TRIPS YET';
+
+    const t = Store.totals();
+    const d = U.dist(t.distanceM, u, t.distanceM < 16000 ? 1 : 0);
+    $('#histTotals').innerHTML = trips.length ? `
+      ${statTile('Trips', t.trips)}
+      ${statTile('Distance', `${d.v}<small> ${d.unit}</small>`)}
+      ${statTile('Time', U.fmtDurationLong(t.timeMs))}
+      ${statTile('Top', fmtSpeedTile(t.maxSpeedMs))}` : '';
+
+    const list = $('#histList');
+    if (!trips.length) {
+      list.innerHTML = `
+        <div class="empty">
+          <span class="big">🛣️</span>
+          No trips yet. Hit <b>START DRIVE</b> and take it for a spin —<br>
+          or run the demo drive to see how it works.
+        </div>`;
+      return;
+    }
+    list.innerHTML = trips.map(tr => {
+      const dd = U.dist(tr.distanceM, u);
+      const mx = U.speed(tr.maxSpeedMs, u);
+      return `
+        <div class="trip-card" data-id="${tr.id}">
+          <div class="trip-ico">${tr.icon}</div>
+          <div class="trip-main">
+            <div class="trip-title">${tr.name}
+              ${tr.demo ? '<span class="badge badge-demo">DEMO</span>' : ''}
+              <span class="badge badge-score ${scoreClass(tr.score)}">${tr.score} · ${tr.grade}</span>
+            </div>
+            <div class="trip-when">${U.relDate(tr.startedAt)} · ${U.fmtClock(tr.startedAt)}</div>
+            <div class="trip-sub">${U.fmtDuration(tr.durationMs)} · max ${mx.v} ${mx.unit}</div>
+          </div>
+          <div class="trip-right"><div class="trip-dist">${dd.v}<small> ${dd.unit}</small></div></div>
+        </div>`;
+    }).join('');
+    U.$$('.trip-card', list).forEach(el => {
+      el.onclick = () => showTripDetail(el.dataset.id);
+    });
+  }
+
+  /* ────────────────────────── profile screen ────────────────────────── */
+
+  function renderProfile() {
+    const p = Store.profile;
+    const t = Store.totals();
+    const tier = Store.tier(t.distanceM);
+    const u = units();
+    const d = U.dist(t.distanceM, u, t.distanceM < 16000 ? 1 : 0);
+    const ach = Store.achievements();
+    const earned = ach.filter(a => a.earned).length;
+
+    const nextTxt = tier.next
+      ? `${U.dist(tier.next.atKm * 1000 - t.distanceM, u, 0).v} ${U.dist(0, u).unit} to ${tier.next.icon} ${tier.next.name}`
+      : 'Top tier reached — respect. 👑';
+
+    $('#profileBody').innerHTML = `
+      <div class="pro-head">
+        <div class="pro-ava">${p.emoji}</div>
+        <div>
+          <div class="pro-name">${U.esc(p.name)}</div>
+          <div class="pro-tag">${p.tag} · driving since ${U.fmtDate(p.createdAt)}</div>
+          <button class="pro-edit" id="editProfile">✏️ Edit driver</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Rank tier</h3>
+        <div class="tier-row">
+          <div class="tier-ico">${tier.icon}</div>
+          <div>
+            <div class="tier-name">${tier.name}</div>
+            <div class="tier-next">${nextTxt}</div>
+          </div>
+        </div>
+        <div class="tier-bar"><i style="width:${Math.round(tier.progress * 100)}%"></i></div>
+      </div>
+
+      <div class="card">
+        <h3>Lifetime stats</h3>
+        <div class="stat-grid">
+          ${statTile('Distance', `${d.v}<small> ${d.unit}</small>`)}
+          ${statTile('Drive time', U.fmtDurationLong(t.timeMs))}
+          ${statTile('Trips', t.trips)}
+          ${statTile('Top speed', fmtSpeedTile(t.maxSpeedMs))}
+          ${statTile('Driver score', t.avgScore || '—')}
+          ${statTile('Best trip score', t.bestScore || '—')}
+          ${statTile('Max G', (t.maxG || 0).toFixed(2))}
+          ${statTile('Day streak', `${Store.streakDays()} 🔥`)}
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Achievements · ${earned}/${ach.length}</h3>
+        <div class="ach-grid">
+          ${ach.map(a => `
+            <div class="ach ${a.earned ? '' : 'locked'}" title="${U.esc(a.desc)}">
+              <div class="ach-ico">${a.icon}</div>
+              <div class="ach-name">${a.name}</div>
+              <div class="ach-desc">${a.desc}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Settings</h3>
+        <div class="set-row">
+          <div><div class="set-lbl">Units</div></div>
+          <div class="seg" id="segUnits">
+            <button data-u="mph" class="${u === 'mph' ? 'on' : ''}">mph</button>
+            <button data-u="kmh" class="${u === 'kmh' ? 'on' : ''}">km/h</button>
+          </div>
+        </div>
+        <div class="set-row">
+          <div>
+            <div class="set-lbl">Keep screen awake</div>
+            <div class="set-sub">While a trip is recording</div>
+          </div>
+          <label class="switch"><input type="checkbox" id="setAwake" ${Store.settings.keepAwake ? 'checked' : ''}><i></i></label>
+        </div>
+        <div class="set-row ${ui.installEvt ? '' : 'hidden'}" id="rowInstall">
+          <div>
+            <div class="set-lbl">Install TripRanked</div>
+            <div class="set-sub">Add to your home screen</div>
+          </div>
+          <button class="btn btn-soft" id="btnInstall" style="padding:9px 16px">Install</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Data</h3>
+        <div class="set-row">
+          <div>
+            <div class="set-lbl">Export my data</div>
+            <div class="set-sub">All trips & stats as JSON</div>
+          </div>
+          <button class="btn btn-soft" id="btnExport" style="padding:9px 16px">Export</button>
+        </div>
+        <div class="set-row">
+          <div>
+            <div class="set-lbl">Reset everything</div>
+            <div class="set-sub">Deletes all trips and your profile</div>
+          </div>
+          <button class="danger-link" id="btnReset">Reset…</button>
+        </div>
+      </div>
+
+      <p class="about">
+        TripRanked v1.0 · trips are stored on this device${LB.isLive() ? ' · leaderboard is live' : ''}<br>
+        🛡️ Drive responsibly. Obey speed limits — the leaderboard isn't worth it.
+      </p>`;
+
+    $('#editProfile').onclick = showEditProfile;
+    U.$$('#segUnits button').forEach(b => b.onclick = () => {
+      Store.settings.units = b.dataset.u;
+      Store.save();
+      buildGauge();
+      renderAll();
+      toast(`Units: ${b.dataset.u === 'kmh' ? 'km/h' : 'mph'}`);
+    });
+    $('#setAwake').onchange = e => {
+      Store.settings.keepAwake = e.target.checked;
+      Store.save();
+    };
+    const inst = $('#btnInstall');
+    if (inst) inst.onclick = async () => {
+      if (!ui.installEvt) return;
+      ui.installEvt.prompt();
+      await ui.installEvt.userChoice;
+      ui.installEvt = null;
+      renderProfile();
+    };
+    $('#btnExport').onclick = () => {
+      const blob = new Blob([Store.exportJSON()], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'tripranked-data.json';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      toast('Data exported 📦');
+    };
+    $('#btnReset').onclick = () => {
+      const box = openModal(`
+        <div class="modal-head"><h3>Reset everything?</h3><button class="modal-x" id="rX">✕</button></div>
+        <p style="color:var(--dim);font-size:14px;line-height:1.5;margin-bottom:16px">
+          This permanently deletes all ${Store.trips.length} trip(s), your stats, achievements and profile from this device. There's no undo.
+        </p>
+        <div class="modal-actions">
+          <button class="btn btn-danger btn-big" id="rGo">Delete it all</button>
+          <button class="btn btn-ghost" id="rNo">Keep my data</button>
+        </div>`);
+      $('#rX', box).onclick = closeModal;
+      $('#rNo', box).onclick = closeModal;
+      $('#rGo', box).onclick = () => {
+        Store.resetAll();
+        closeModal();
+        buildGauge();
+        renderAll();
+        toast('Fresh start 🌱');
+      };
+    };
+  }
+
+  function showEditProfile() {
+    const p = Store.profile;
+    const emojis = ['🏎️', '🚗', '🚙', '🛻', '🚘', '🏁', '⚡', '🛞', '🚕', '🏍️'];
+    const box = openModal(`
+      <div class="modal-head"><h3>Edit driver</h3><button class="modal-x" id="eX">✕</button></div>
+      <div class="field">
+        <label>Driver name</label>
+        <input type="text" id="eName" maxlength="20" value="${U.esc(p.name)}" autocomplete="off">
+      </div>
+      <div class="field">
+        <label>Avatar</label>
+        <div class="emoji-row">
+          ${emojis.map(e => `<button class="emoji-opt ${e === p.emoji ? 'on' : ''}" data-e="${e}">${e}</button>`).join('')}
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-primary btn-big" id="eSave">Save</button>
+      </div>`);
+    let chosen = p.emoji;
+    U.$$('.emoji-opt', box).forEach(b => b.onclick = () => {
+      chosen = b.dataset.e;
+      U.$$('.emoji-opt', box).forEach(x => x.classList.toggle('on', x === b));
+    });
+    $('#eX', box).onclick = closeModal;
+    $('#eSave', box).onclick = () => {
+      const name = $('#eName', box).value.trim();
+      if (name) p.name = name.slice(0, 20);
+      p.emoji = chosen;
+      Store.save();
+      LB.submit();
+      closeModal();
+      renderProfile();
+      toast('Driver updated');
+    };
+  }
+
+  /* ────────────────────────── navigation & boot ────────────────────────── */
+
+  function showScreen(name) {
+    ui.screen = name;
+    U.$$('.screen').forEach(s => s.classList.toggle('active', s.id === 'screen-' + name));
+    U.$$('#tabbar .tab').forEach(t => t.classList.toggle('on', t.dataset.screen === name));
+    if (name === 'ranks') renderRanks();
+    if (name === 'history') renderHistory();
+    if (name === 'profile') renderProfile();
+  }
+
+  function renderAll() {
+    renderRanks();
+    renderHistory();
+    renderProfile();
+  }
+
+  function boot() {
+    buildGauge();
+
+    U.$$('#tabbar .tab').forEach(t => t.onclick = () => showScreen(t.dataset.screen));
+
+    $('#btnStart').onclick = () => startDrive(false);
+    $('#btnDemo').onclick = () => startDrive(true);
+    $('#btnEnd').onclick = () => endDrive(false);
+
+    U.$$('#segMetric button').forEach(b => b.onclick = () => {
+      ui.lbMetric = b.dataset.metric;
+      U.$$('#segMetric button').forEach(x => x.classList.toggle('on', x === b));
+      renderRanks();
+    });
+    U.$$('#segPeriod button').forEach(b => b.onclick = () => {
+      ui.lbPeriod = b.dataset.period;
+      U.$$('#segPeriod button').forEach(x => x.classList.toggle('on', x === b));
+      renderRanks();
+    });
+
+    $('#modalBack').addEventListener('click', e => {
+      if (e.target.id === 'modalBack' && modalDismissable) closeModal();
+    });
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      ui.installEvt = e;
+      const row = $('#rowInstall');
+      if (row) row.classList.remove('hidden');
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && Tracker.isActive()) grabWakeLock();
+    });
+
+    window.addEventListener('beforeunload', e => {
+      if (Tracker.isActive() && !Tracker.isDemo()) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
+
+    if ('serviceWorker' in navigator) {
+      Promise.resolve().catch(() => { /* offline mode unavailable */ });
+    }
+
+    renderHistory();
+    renderProfile();
+    renderRanks();
+  }
+
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', boot)
+    : boot();
+})();
+
+</script>
+</body>
+</html>
