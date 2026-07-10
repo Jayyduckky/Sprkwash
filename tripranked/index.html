@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>TripRanked — Drive. Track. Rank.</title>
+  <meta name="description" content="Track your drives with GPS — live speed, distance, driving stats, trip history, shareable stat cards and global leaderboards.">
+  <meta name="theme-color" content="#0a0e13">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TripRanked">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<noscript><p style="padding:2rem;font-family:sans-serif">TripRanked needs JavaScript to track your drives.</p></noscript>
+
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span class="bolt">⚡</span>Trip<span class="brand-accent">Ranked</span></div>
+    <div id="gpsChip" class="chip chip-hidden">GPS</div>
+  </header>
+
+  <main id="main">
+
+    <!-- ══════════ DRIVE ══════════ -->
+    <section id="screen-drive" class="screen active">
+      <div class="gauge-wrap">
+        <svg id="gauge" viewBox="0 0 260 170" aria-hidden="true">
+          <path id="gaugeTrack" class="gauge-track" pathLength="100"></path>
+          <path id="gaugeFill" class="gauge-fill" pathLength="100"></path>
+          <g id="gaugeTicks"></g>
+        </svg>
+        <div class="gauge-center">
+          <div id="speedNow" class="speed-now">0</div>
+          <div id="speedUnit" class="speed-unit">mph</div>
+        </div>
+      </div>
+
+      <div class="gauge-sub">
+        <span id="headingLbl" class="dim">—</span>
+        <span class="dot-sep">·</span>
+        <span id="stateLbl" class="dim">Ready</span>
+      </div>
+
+      <div class="live-grid">
+        <div class="tile"><div class="tile-label">Time</div><div class="tile-value" id="lvTime">0:00</div></div>
+        <div class="tile"><div class="tile-label">Distance</div><div class="tile-value" id="lvDist">0.0<small id="lvDistU"> mi</small></div></div>
+        <div class="tile"><div class="tile-label">Avg</div><div class="tile-value" id="lvAvg">0</div></div>
+        <div class="tile"><div class="tile-label">Max</div><div class="tile-value" id="lvMax">0</div></div>
+      </div>
+
+      <div id="liveMapWrap" class="live-map-wrap">
+        <div id="liveMap"></div>
+        <div id="mapIdleHint" class="map-hint">🗺️ Your live position shows here — tap 📍 or start a drive</div>
+        <button id="btnLocate" class="map-btn map-btn-locate" title="Show my location">📍</button>
+        <button id="btnMapSize" class="map-btn map-btn-size" title="Expand map">⤢</button>
+        <button id="btnRecenter" class="map-btn map-btn-recenter hidden">🎯 Follow</button>
+      </div>
+
+      <div class="drive-lower">
+        <div id="gmeter" class="gmeter" title="G-force">
+          <div class="gmeter-ring"></div>
+          <div class="gmeter-cross"></div>
+          <div id="gDot" class="gmeter-dot"></div>
+          <div class="gmeter-label">G</div>
+          <div id="gVal" class="gmeter-val">0.00</div>
+        </div>
+        <div class="events-live">
+          <div class="ev-chip" title="Hard accelerations">⚡ <b id="evA">0</b></div>
+          <div class="ev-chip" title="Hard brakes">🛑 <b id="evB">0</b></div>
+          <div class="ev-chip" title="Hard corners">↩️ <b id="evC">0</b></div>
+          <div class="ev-chip" title="Stops">🚦 <b id="evS">0</b></div>
+        </div>
+      </div>
+
+      <div class="drive-actions">
+        <button id="btnStart" class="btn btn-primary btn-big">START DRIVE</button>
+        <button id="btnEnd" class="btn btn-danger btn-big hidden">END TRIP</button>
+        <button id="btnDemo" class="btn btn-ghost">▶&nbsp; Try a demo drive</button>
+      </div>
+      <p id="gpsHelp" class="gps-help hidden"></p>
+      <p class="safety">🛡️ Start your trip, then put the phone down. Never interact with TripRanked while driving.</p>
+    </section>
+
+    <!-- ══════════ RANKS ══════════ -->
+    <section id="screen-ranks" class="screen">
+      <div class="screen-head">
+        <h2>Leaderboard</h2>
+        <span id="lbMode" class="pill">GLOBAL GRID</span>
+      </div>
+      <div class="seg" id="segMetric">
+        <button data-metric="speed" class="on">Top Speed</button>
+        <button data-metric="distance">Distance</button>
+        <button data-metric="trips">Trips</button>
+      </div>
+      <div class="seg seg-mini" id="segPeriod">
+        <button data-period="week" class="on">This Week</button>
+        <button data-period="all">All Time</button>
+      </div>
+      <div id="lbBody" class="lb-body"><div class="lb-loading">Loading…</div></div>
+    </section>
+
+    <!-- ══════════ HISTORY ══════════ -->
+    <section id="screen-history" class="screen">
+      <div class="screen-head"><h2>Trips</h2><span id="histCount" class="pill"></span></div>
+      <div id="histTotals" class="hist-totals"></div>
+      <div id="histList" class="hist-list"></div>
+    </section>
+
+    <!-- ══════════ PROFILE ══════════ -->
+    <section id="screen-profile" class="screen">
+      <div id="profileBody"></div>
+    </section>
+
+  </main>
+
+  <nav class="tabbar" id="tabbar">
+    <button data-screen="drive" class="tab on">
+      <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 8.96 8.96 0 0 0 2.1 5.8l1.5-1.3A7 7 0 1 1 19 12c0 1.7-.6 3.3-1.6 4.5l1.5 1.3A8.96 8.96 0 0 0 21 12a9 9 0 0 0-9-9Zm3.9 5.2-4.6 3.4a1.8 1.8 0 1 0 2.1 2.9l3.4-4.6c.5-.7-.3-1.5-.9-1.7Z"/></svg>
+      <span>Drive</span>
+    </button>
+    <button data-screen="ranks" class="tab">
+      <svg viewBox="0 0 24 24"><path d="M5 3h14v2h2a1 1 0 0 1 1 1v2a5 5 0 0 1-5 5h-.4A6 6 0 0 1 13 16.7V19h3v2H8v-2h3v-2.3A6 6 0 0 1 7.4 13H7a5 5 0 0 1-5-5V6a1 1 0 0 1 1-1h2V3Zm0 4H4v1a3 3 0 0 0 3 3V7Zm15 1V7h-1v4a3 3 0 0 0 1-3Z"/></svg>
+      <span>Ranks</span>
+    </button>
+    <button data-screen="history" class="tab">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10h-2a8 8 0 1 1-8-8v3l5-4-5-4v3Zm-1 5v6l5 3 .9-1.6-3.9-2.3V7h-2Z"/></svg>
+      <span>Trips</span>
+    </button>
+    <button data-screen="profile" class="tab">
+      <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.4 0-8 2.7-8 6v2h16v-2c0-3.3-3.6-6-8-6Z"/></svg>
+      <span>You</span>
+    </button>
+  </nav>
+
+  <div id="modalBack" class="modal-back hidden">
+    <div id="modalBox" class="modal" role="dialog" aria-modal="true"></div>
+  </div>
+  <div id="toast" class="toast hidden"></div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/util.js"></script>
+<script src="js/store.js"></script>
+<script src="js/tracker.js"></script>
+<script src="js/simulator.js"></script>
+<script src="js/leaderboard.js"></script>
+<script src="js/sharecard.js"></script>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="js/map.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
