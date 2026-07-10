@@ -15,7 +15,13 @@ const Store = (() => {
       createdAt: Date.now()
     },
     settings: {
-      units: 'mph',        // 'mph' | 'kmh'
+      // mph only for the US/UK-style locales; everyone else (Germany!) gets km/h
+      units: (() => {
+        try {
+          const l = (navigator.language || 'en-US').toLowerCase();
+          return (l === 'en' || l.endsWith('-us') || l.endsWith('-gb')) ? 'mph' : 'kmh';
+        } catch (_) { return 'kmh'; }
+      })(),
       keepAwake: true,
       demoSeen: false
     },

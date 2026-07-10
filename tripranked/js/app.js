@@ -40,6 +40,7 @@
     return box;
   }
   function closeModal() {
+    MapView.destroyModalMaps();
     $('#modalBack').classList.add('hidden');
     $('#modalBox').innerHTML = '';
   }
@@ -177,6 +178,12 @@
       }
     }
 
+    // live map follows the car
+    if (snap.lat != null) {
+      $('#mapIdleHint').classList.add('hidden');
+      MapView.liveUpdate(snap.lat, snap.lon, snap.heading, snap.gps.accuracy, snap.path);
+    }
+
     updateChip(snap);
   }
 
@@ -200,6 +207,9 @@
     $('#btnDemo').classList.add('hidden');
     $('#btnEnd').classList.remove('hidden');
     $('#gpsHelp').classList.add('hidden');
+    $('#btnLocate').classList.add('hidden');
+    $('#mapIdleHint').classList.add('hidden');
+    MapView.liveReset();
     $('#tabbar .tab[data-screen="drive"]').insertAdjacentHTML('beforeend', '<i class="rec-dot"></i>');
 
     grabWakeLock();
@@ -216,6 +226,7 @@
     $('#btnStart').classList.remove('hidden');
     $('#btnDemo').classList.remove('hidden');
     $('#btnEnd').classList.add('hidden');
+    $('#btnLocate').classList.remove('hidden');
     const rec = $('#tabbar .rec-dot');
     if (rec) rec.remove();
     $('#speedNow').textContent = '0';
@@ -284,15 +295,6 @@
       </div>`;
   }
 
-  function paintRoute(canvas, trip) {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const w = canvas.clientWidth, h = canvas.clientHeight;
-    canvas.width = w * dpr; canvas.height = h * dpr;
-    const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-    U.drawRoute(ctx, trip.path, 0, 0, w, h, {});
-  }
-
   function paintSpeedGraph(canvas, trip) {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const w = canvas.clientWidth, h = canvas.clientHeight;
@@ -340,7 +342,7 @@
         <div class="sum-grade ${scoreClass(trip.score)}">GRADE ${trip.grade}</div>
         <div class="sum-sub">${trip.icon} ${trip.name} · ${U.fmtClock(trip.startedAt)}${trip.demo ? ' · 🧪 demo' : ''} · max ${trip.maxG.toFixed(2)}g</div>
       </div>
-      <canvas class="route-canvas" id="sumRoute"></canvas>
+      <div class="route-map" id="sumMap"></div>
       ${tripStatsHtml(trip)}
       <div class="modal-actions">
         <button class="btn btn-primary btn-big" id="sumSave">💾 &nbsp;Save trip</button>
@@ -351,7 +353,7 @@
       </div>
     `, { dismissable: false });
 
-    paintRoute($('#sumRoute', box), trip);
+    MapView.tripMap($('#sumMap', box), trip.path);
 
     $('#sumSave', box).onclick = () => {
       Store.addTrip(trip);
@@ -380,7 +382,7 @@
         <button class="modal-x" id="dX">✕</button>
       </div>
       <div class="sum-sub" style="margin-bottom:10px">${U.fmtDate(trip.startedAt)} · ${U.fmtClock(trip.startedAt)} → ${U.fmtClock(trip.endedAt)}</div>
-      <canvas class="route-canvas" id="detRoute"></canvas>
+      <div class="route-map" id="detMap"></div>
       <canvas class="graph-canvas" id="detGraph"></canvas>
       <div class="sum-hero" style="margin-bottom:10px">
         <div class="sum-score" style="font-size:40px">${trip.score}</div>
@@ -392,7 +394,7 @@
         <button class="btn btn-ghost danger-link" id="detDel">Delete this trip</button>
       </div>
     `);
-    paintRoute($('#detRoute', box), trip);
+    MapView.tripMap($('#detMap', box), trip.path);
     paintSpeedGraph($('#detGraph', box), trip);
     $('#dX', box).onclick = closeModal;
     $('#detShare', box).onclick = async () => {
@@ -734,6 +736,20 @@
     $('#btnStart').onclick = () => startDrive(false);
     $('#btnDemo').onclick = () => startDrive(true);
     $('#btnEnd').onclick = () => endDrive(false);
+
+    // live map
+    MapView.initLive($('#liveMap'));
+    $('#btnLocate').onclick = () => {
+      $('#mapIdleHint').classList.add('hidden');
+      MapView.locateOnce();
+    };
+    $('#btnRecenter').onclick = () => MapView.liveRecenter();
+    $('#btnMapSize').onclick = () => {
+      const wrap = $('#liveMapWrap');
+      wrap.classList.toggle('tall');
+      $('#btnMapSize').textContent = wrap.classList.contains('tall') ? '⤡' : '⤢';
+      MapView.liveInvalidate();
+    };
 
     U.$$('#segMetric button').forEach(b => b.onclick = () => {
       ui.lbMetric = b.dataset.metric;

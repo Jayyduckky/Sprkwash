@@ -229,6 +229,7 @@ const Tracker = (() => {
     const elapsed = Date.now() - s.startedAt;
     return {
       demo: demoMode,
+      lat: s.lat, lon: s.lon,
       elapsedMs: elapsed,
       movingMs: s.movingMs,
       speedMs: s.speedMs,

@@ -12,6 +12,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="TripRanked">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -50,6 +51,14 @@
         <div class="tile"><div class="tile-label">Distance</div><div class="tile-value" id="lvDist">0.0<small id="lvDistU"> mi</small></div></div>
         <div class="tile"><div class="tile-label">Avg</div><div class="tile-value" id="lvAvg">0</div></div>
         <div class="tile"><div class="tile-label">Max</div><div class="tile-value" id="lvMax">0</div></div>
+      </div>
+
+      <div id="liveMapWrap" class="live-map-wrap">
+        <div id="liveMap"></div>
+        <div id="mapIdleHint" class="map-hint">🗺️ Your live position shows here — tap 📍 or start a drive</div>
+        <button id="btnLocate" class="map-btn map-btn-locate" title="Show my location">📍</button>
+        <button id="btnMapSize" class="map-btn map-btn-size" title="Expand map">⤢</button>
+        <button id="btnRecenter" class="map-btn map-btn-recenter hidden">🎯 Follow</button>
       </div>
 
       <div class="drive-lower">
@@ -141,6 +150,8 @@
 <script src="js/simulator.js"></script>
 <script src="js/leaderboard.js"></script>
 <script src="js/sharecard.js"></script>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="js/map.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

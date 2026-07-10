@@ -3,7 +3,7 @@
  * (GPS + on-device storage need no network at all). */
 'use strict';
 
-const VERSION = 'tripranked-v1.0.0';
+const VERSION = 'tripranked-v1.1.0';
 const SHELL = [
   './',
   './index.html',
@@ -15,12 +15,17 @@ const SHELL = [
   './js/simulator.js',
   './js/leaderboard.js',
   './js/sharecard.js',
+  './js/map.js',
   './js/app.js',
+  './vendor/leaflet/leaflet.js',
+  './vendor/leaflet/leaflet.css',
   './manifest.webmanifest',
   './icons/icon.svg',
   './icons/icon-192.png',
   './icons/icon-512.png'
 ];
+// Map tiles are cross-origin, so the fetch handler below never touches them —
+// the browser's HTTP cache handles tiles, per OSM usage policy.
 
 self.addEventListener('install', e => {
   e.waitUntil(

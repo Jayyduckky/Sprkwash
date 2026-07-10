@@ -11,6 +11,10 @@ No build step, no accounts, no API keys — plain HTML/CSS/JS that runs anywhere
 ## Features
 
 - **Live drive tracking** — GPS speedometer with gauge, time, distance, average & top speed
+- **Real live map** — a dark-styled OpenStreetMap view (Leaflet, no API key needed) that
+  follows you while driving with a heading arrow, GPS-accuracy ring and the growing route
+  trail; expandable, with a 📍 locate button when idle. Trip summary & detail views draw
+  the recorded route on real streets, colored by speed.
 - **Driving events** — hard accelerations, hard brakes, hard corners and stops detected
   in real time, plus a live G-force bubble (lateral & longitudinal g estimated from motion)
 - **Trip score** — every trip gets a 0–100 smoothness score and a letter grade
@@ -68,7 +72,9 @@ tripranked/
 │   ├── simulator.js      the scripted demo drive
 │   ├── leaderboard.js    global grid + Supabase adapter
 │   ├── sharecard.js      canvas share-card generator
+│   ├── map.js            live map + trip route maps (Leaflet/OSM)
 │   └── app.js            screens, drive lifecycle, rendering
+├── vendor/leaflet/       Leaflet 1.9.4 (vendored — no CDN dependency)
 ├── sw.js                 offline service worker (network-first)
 ├── manifest.webmanifest  PWA manifest
 ├── icons/                app icons
@@ -78,6 +84,10 @@ tripranked/
 
 ## Notes
 
+- Map tiles come from [OpenStreetMap](https://www.openstreetmap.org/copyright) — free, no
+  API key, excellent coverage in Europe. Google/Apple maps require paid developer keys; if
+  you have a Google Maps key, swapping the tile URL in `js/map.js` is a one-liner. Without
+  a network the map pane degrades gracefully (route lines still draw on the dark base).
 - All data lives in your browser's localStorage (export it from **You → Data**).
 - Trips shorter than ~40 m / 20 s are discarded as noise.
 - GPS accuracy varies; fixes worse than 40 m are ignored, so distance/top speed stay honest.
