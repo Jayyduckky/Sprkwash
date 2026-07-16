@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>GigTax — know what's actually yours</title>
+  <meta name="description" content="Real-time tax set-aside for gig workers and freelancers. Log what you earn, instantly see what's yours to spend and what to set aside for taxes.">
+  <meta name="theme-color" content="#101311">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ============ Design tokens ============ */
+    :root {
+      --paper: #F7F5F0;
+      --card: #FFFFFF;
+      --ink: #17201B;
+      --ink-soft: #5B6660;
+      --line: #E5E1D8;
+      --mine: #0E8A54;        /* money that's yours */
+      --mine-soft: #E3F3EB;
+      --irs: #E2590A;         /* money set aside for tax */
+      --irs-soft: #FBEADF;
+      --focus: #17201B;
+      --danger: #C22F2F;
+      --radius: 16px;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+      --shadow: 0 1px 2px rgba(23,32,27,0.05), 0 8px 24px -12px rgba(23,32,27,0.12);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #101311;
+        --card: #1A1F1C;
+        --ink: #EDEFEA;
+        --ink-soft: #9BA69F;
+        --line: #2A322D;
+        --mine: #35C285;
+        --mine-soft: #16382A;
+        --irs: #FF7A33;
+        --irs-soft: #40261A;
+        --focus: #EDEFEA;
+        --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.5);
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-display);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100dvh;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.45;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    input, select { font-family: inherit; font-size: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+    .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+
+    .shell { max-width: 520px; margin: 0 auto; padding: 0 20px calc(96px + env(safe-area-inset-bottom)); }
+
+    /* ============ Header ============ */
+    header.app-head { display: flex; align-items: center; justify-content: space-between; padding: 22px 0 6px; }
+    .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.03em; display: flex; align-items: center; gap: 8px; }
+    .wordmark .tick { color: var(--mine); }
+    .year-chip { font-size: 12px; font-weight: 600; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 100px; padding: 4px 10px; }
+
+    /* ============ Cards ============ */
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+    .card + .card { margin-top: 14px; }
+    .card h2 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 10px; }
+
+    /* ============ Hero split ============ */
+    .hero { padding: 24px 20px; }
+    .hero .label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); }
+    .hero .big { font-size: clamp(40px, 11vw, 56px); font-weight: 600; line-height: 1.05; margin: 4px 0 2px; color: var(--mine); }
+    .hero .sub { font-size: 14px; color: var(--ink-soft); }
+    .splitbar { display: flex; height: 14px; border-radius: 100px; overflow: hidden; margin: 18px 0 10px; background: var(--line); }
+    .splitbar .seg-mine { background: var(--mine); transition: width 0.6s cubic-bezier(.2,.8,.2,1); }
+    .splitbar .seg-irs { background: var(--irs); transition: width 0.6s cubic-bezier(.2,.8,.2,1); }
+    .legend { display: flex; justify-content: space-between; font-size: 13px; }
+    .legend .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+    .legend .mine-txt { color: var(--mine); font-weight: 600; }
+    .legend .irs-txt { color: var(--irs); font-weight: 600; }
+
+    /* ============ Stat rows / lists ============ */
+    .stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-row .k { color: var(--ink-soft); }
+    .stat-row .v { font-weight: 600; }
+    .entry-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .entry-row:last-child { border-bottom: none; }
+    .entry-ico { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-size: 16px; flex-shrink: 0; background: var(--mine-soft); color: var(--mine); font-weight: 700; }
+    .entry-ico.exp { background: var(--irs-soft); color: var(--irs); }
+    .entry-main { flex: 1; min-width: 0; }
+    .entry-main .t { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .entry-main .d { font-size: 12.5px; color: var(--ink-soft); }
+    .entry-amt { text-align: right; }
+    .entry-amt .a { font-weight: 600; font-size: 15px; }
+    .entry-amt .s { font-size: 12px; color: var(--irs); }
+    .entry-del { color: var(--ink-soft); font-size: 18px; padding: 6px; border-radius: 8px; }
+    .entry-del:hover { color: var(--danger); }
+    .empty { text-align: center; color: var(--ink-soft); font-size: 14.5px; padding: 26px 10px; }
+    .empty strong { color: var(--ink); }
+
+    /* ============ Buttons ============ */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; font-size: 16px; border-radius: 14px; padding: 15px 22px; transition: transform 0.08s ease, opacity 0.15s; width: 100%; }
+    .btn:active { transform: scale(0.97); }
+    .btn-ink { background: var(--ink); color: var(--paper); }
+    .btn-ghost { border: 1.5px solid var(--line); color: var(--ink); }
+    .btn-sm { width: auto; padding: 9px 16px; font-size: 14px; border-radius: 10px; }
+
+    .fab {
+      position: fixed; right: max(20px, calc(50vw - 240px)); bottom: calc(84px + env(safe-area-inset-bottom));
+      width: 60px; height: 60px; border-radius: 50%; background: var(--mine); color: #fff;
+      font-size: 30px; font-weight: 500; display: grid; place-items: center;
+      box-shadow: 0 10px 28px -8px rgba(14,138,84,0.55); transition: transform 0.1s; z-index: 40; line-height: 1;
+    }
+    .fab:active { transform: scale(0.92); }
+
+    /* ============ Tab bar ============ */
+    nav.tabbar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+      background: color-mix(in srgb, var(--card) 92%, transparent);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--line);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .tabbar-inner { max-width: 520px; margin: 0 auto; display: flex; }
+    .tab { flex: 1; padding: 10px 0 12px; text-align: center; font-size: 11.5px; font-weight: 600; color: var(--ink-soft); display: flex; flex-direction: column; align-items: center; gap: 3px; }
+    .tab svg { width: 22px; height: 22px; }
+    .tab[aria-selected="true"] { color: var(--ink); }
+    .tab[aria-selected="true"] .tab-ind { width: 16px; height: 3px; border-radius: 3px; background: var(--mine); }
+    .tab .tab-ind { width: 16px; height: 3px; border-radius: 3px; background: transparent; }
+
+    /* ============ Sheet (modal) ============ */
+    .sheet-veil { position: fixed; inset: 0; background: rgba(10,14,12,0.45); z-index: 50; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+    .sheet-veil.open { opacity: 1; pointer-events: auto; }
+    .sheet {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 51;
+      max-width: 520px; margin: 0 auto;
+      background: var(--card); border-radius: 22px 22px 0 0; border: 1px solid var(--line); border-bottom: none;
+      padding: 20px 20px calc(24px + env(safe-area-inset-bottom));
+      transform: translateY(105%); transition: transform 0.28s cubic-bezier(.2,.8,.2,1);
+    }
+    .sheet.open { transform: translateY(0); }
+    .sheet h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .grabber { width: 40px; height: 4px; border-radius: 4px; background: var(--line); margin: 0 auto 14px; }
+
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+    .field input, .field select {
+      width: 100%; padding: 13px 14px; border: 1.5px solid var(--line); border-radius: 12px;
+      background: var(--paper); font-size: 16px;
+    }
+    .field input:focus, .field select:focus { border-color: var(--ink); outline: none; }
+    .amount-input { position: relative; }
+    .amount-input span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink-soft); font-weight: 600; }
+    .amount-input input { padding-left: 30px; font-family: var(--font-mono); font-size: 20px; font-weight: 600; }
+    .seg-toggle { display: flex; border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
+    .seg-toggle button { flex: 1; padding: 11px; font-size: 14.5px; font-weight: 600; color: var(--ink-soft); }
+    .seg-toggle button.on { background: var(--ink); color: var(--paper); }
+
+    /* ============ Onboarding ============ */
+    #onboarding { position: fixed; inset: 0; background: var(--paper); z-index: 100; overflow-y: auto; }
+    .ob-wrap { max-width: 520px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; padding: 28px 24px calc(28px + env(safe-area-inset-bottom)); }
+    .ob-step { flex: 1; display: none; flex-direction: column; }
+    .ob-step.on { display: flex; }
+    .ob-kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mine); margin-bottom: 10px; }
+    .ob-step h1 { font-size: clamp(28px, 7.5vw, 36px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 10px; }
+    .ob-step .lede { font-size: 16px; color: var(--ink-soft); margin-bottom: 26px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { border: 1.5px solid var(--line); background: var(--card); border-radius: 100px; padding: 11px 18px; font-size: 15px; font-weight: 600; transition: all 0.12s; }
+    .chip.on { border-color: var(--mine); background: var(--mine-soft); color: var(--mine); }
+    .ob-foot { margin-top: 28px; }
+    .ob-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 16px; }
+    .ob-dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--line); }
+    .ob-dots span.on { background: var(--ink); width: 20px; border-radius: 4px; }
+    .rate-reveal { text-align: center; padding: 30px 0 10px; }
+    .rate-reveal .pct { font-size: clamp(64px, 20vw, 96px); font-weight: 700; letter-spacing: -0.04em; color: var(--irs); line-height: 1; }
+    .rate-reveal .cap { font-size: 16px; color: var(--ink-soft); max-width: 320px; margin: 10px auto 0; }
+    details.math { margin-top: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+    details.math summary { padding: 13px 16px; font-weight: 600; font-size: 14.5px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    details.math summary::after { content: "+"; font-size: 18px; color: var(--ink-soft); }
+    details.math[open] summary::after { content: "–"; }
+    details.math .math-body { padding: 0 16px 14px; font-size: 14px; }
+    details.math .math-body .stat-row { font-size: 14px; padding: 7px 0; }
+    .disclaimer { font-size: 12px; color: var(--ink-soft); text-align: center; margin-top: 14px; }
+
+    /* ============ Quarters ============ */
+    .q-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .q-row:last-child { border-bottom: none; }
+    .q-badge { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-weight: 700; font-size: 14px; background: var(--paper); border: 1px solid var(--line); flex-shrink: 0; }
+    .q-row.next .q-badge { background: var(--irs-soft); color: var(--irs); border-color: transparent; }
+    .q-main { flex: 1; }
+    .q-main .t { font-weight: 600; font-size: 15px; }
+    .q-main .d { font-size: 12.5px; color: var(--ink-soft); }
+    .q-paid { font-size: 13px; font-weight: 600; color: var(--mine); }
+    .countdown { font-size: 13px; font-weight: 600; color: var(--irs); }
+
+    /* ============ Misc ============ */
+    .view { display: none; padding-top: 10px; }
+    .view.on { display: block; animation: fadeUp 0.25s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .toast {
+      position: fixed; left: 50%; bottom: calc(150px + env(safe-area-inset-bottom)); transform: translateX(-50%) translateY(20px);
+      background: var(--ink); color: var(--paper); padding: 12px 20px; border-radius: 100px; font-size: 14.5px; font-weight: 600;
+      opacity: 0; pointer-events: none; transition: all 0.25s; z-index: 60; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .foot-note { text-align: center; font-size: 12px; color: var(--ink-soft); padding: 26px 20px 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- ================= ONBOARDING ================= -->
+  <div id="onboarding" hidden>
+    <div class="ob-wrap">
+
+      <div class="ob-step on" data-step="1">
+        <div class="ob-kicker">GigTax</div>
+        <h1>What kind of work pays you?</h1>
+        <p class="lede">Pick all that apply — this shapes your write-offs and reminders.</p>
+        <div class="chips" id="gigChips">
+          <button class="chip" data-v="rideshare">🚗 Rideshare</button>
+          <button class="chip" data-v="delivery">🛵 Delivery</button>
+          <button class="chip" data-v="freelance">💻 Freelance</button>
+          <button class="chip" data-v="creator">🎥 Creator</button>
+          <button class="chip" data-v="trades">🔧 Trades / services</button>
+          <button class="chip" data-v="other">✨ Other</button>
+        </div>
+        <div class="ob-foot">
+          <div class="ob-dots"><span class="on"></span><span></span><span></span><span></span></div>
+          <button class="btn btn-ink" id="obNext1">Continue</button>
+        </div>
+      </div>
+
+      <div class="ob-step" data-step="2">
+        <div class="ob-kicker">Step 2</div>
+        <h1>Two quick tax facts.</h1>
+        <p class="lede">These change your numbers a lot, so we ask exactly once.</p>
+        <div class="field">
+          <label for="obStatus">Filing status</label>
+          <select id="obStatus">
+            <option value="single">Single</option>
+            <option value="married">Married filing jointly</option>
+            <option value="hoh">Head of household</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="obState">State</label>
+          <select id="obState"></select>
+        </div>
+        <div class="ob-foot">
+          <div class="ob-dots"><span></span><span class="on"></span><span></span><span></span></div>
+          <button class="btn btn-ink" id="obNext2">Continue</button>
+        </div>
+      </div>
+
+      <div class="ob-step" data-step="3">
+        <div class="ob-kicker">Step 3</div>
+        <h1>Roughly how much will you earn this year?</h1>
+        <p class="lede">Gig income only, before expenses. A rough guess is fine — you can change it anytime.</p>
+        <div class="field">
+          <label for="obIncome">Expected yearly gig income</label>
+          <div class="amount-input"><span>$</span><input id="obIncome" type="number" inputmode="numeric" placeholder="30000" min="0"></div>
+        </div>
+        <div class="ob-foot">
+          <div class="ob-dots"><span></span><span></span><span class="on"></span><span></span></div>
+          <button class="btn btn-ink" id="obNext3">Show my number</button>
+        </div>
+      </div>
+
+      <div class="ob-step" data-step="4">
+        <div class="ob-kicker">Your number</div>
+        <div class="rate-reveal">
+          <div class="pct num" id="revealPct">27%</div>
+          <p class="cap">Set aside <strong id="revealPctInline">27%</strong> of every payout and taxes can't sneak up on you.</p>
+        </div>
+        <details class="math">
+          <summary>How we got this</summary>
+          <div class="math-body" id="revealMath"></div>
+        </details>
+        <p class="disclaimer">Estimates for planning only — not tax advice. All rates are editable in Settings.</p>
+        <div class="ob-foot">
+          <div class="ob-dots"><span></span><span></span><span></span><span class="on"></span></div>
+          <button class="btn btn-ink" id="obFinish">Start tracking</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= APP ================= -->
+  <div id="app" hidden>
+    <div class="shell">
+      <header class="app-head">
+        <div class="wordmark"><span class="tick">▮</span>GigTax</div>
+        <div class="year-chip num" id="yearChip"></div>
+      </header>
+
+      <!-- HOME -->
+      <section class="view on" id="view-home">
+        <div class="card hero">
+          <div class="label">Safe to spend</div>
+          <div class="big num" id="safeAmt">$0</div>
+          <div class="sub">of <span class="num" id="grossAmt">$0</span> earned this year</div>
+          <div class="splitbar" aria-hidden="true">
+            <div class="seg-mine" id="segMine" style="width:100%"></div>
+            <div class="seg-irs" id="segIrs" style="width:0%"></div>
+          </div>
+          <div class="legend">
+            <span class="mine-txt"><span class="dot" style="background:var(--mine)"></span>Yours</span>
+            <span class="irs-txt">Set aside <strong class="num" id="setAsideAmt">$0</strong><span class="dot" style="background:var(--irs);margin-left:6px;margin-right:0"></span></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>This year</h2>
+          <div class="stat-row"><span class="k">Set-aside rate</span><span class="v num" id="rateStat">—</span></div>
+          <div class="stat-row"><span class="k">Expenses &amp; mileage deductions</span><span class="v num" id="dedStat">$0</span></div>
+          <div class="stat-row"><span class="k">Next quarterly deadline</span><span class="v" id="nextQStat">—</span></div>
+        </div>
+
+        <div class="card">
+          <h2>Recent activity</h2>
+          <div id="entryList"></div>
+        </div>
+        <p class="foot-note">Estimates for planning only — not tax advice.</p>
+      </section>
+
+      <!-- MILES -->
+      <section class="view" id="view-miles">
+        <div class="card hero">
+          <div class="label">Mileage deduction</div>
+          <div class="big num" id="milesDedAmt" style="color:var(--ink)">$0</div>
+          <div class="sub"><span class="num" id="milesTotal">0</span> miles logged × <span class="num" id="milesRateLbl">$0.70</span>/mi</div>
+        </div>
+        <div class="card">
+          <h2>Trips</h2>
+          <div id="tripList"></div>
+        </div>
+        <button class="btn btn-ghost" id="addTripBtn" style="margin-top:14px">+ Log miles</button>
+      </section>
+
+      <!-- QUARTERS -->
+      <section class="view" id="view-quarters">
+        <div class="card hero">
+          <div class="label">Estimated tax so far</div>
+          <div class="big num" id="qTaxAmt" style="color:var(--irs)">$0</div>
+          <div class="sub">You've set aside <strong class="num" id="qSetAside">$0</strong> — <span id="qVerdict">on track</span></div>
+        </div>
+        <div class="card">
+          <h2>IRS quarterly deadlines</h2>
+          <div id="qList"></div>
+        </div>
+        <div class="card">
+          <h2>How your estimate is calculated</h2>
+          <div id="taxMath"></div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="view" id="view-settings">
+        <div class="card">
+          <h2>Profile</h2>
+          <div class="field"><label for="setStatus">Filing status</label>
+            <select id="setStatus">
+              <option value="single">Single</option>
+              <option value="married">Married filing jointly</option>
+              <option value="hoh">Head of household</option>
+            </select>
+          </div>
+          <div class="field"><label for="setState">State</label><select id="setState"></select></div>
+          <div class="field"><label for="setExpected">Expected yearly income ($)</label><input id="setExpected" type="number" inputmode="numeric" min="0"></div>
+        </div>
+        <div class="card">
+          <h2>Rates (editable estimates)</h2>
+          <div class="field"><label for="setRateOverride">Set-aside rate override (%) — leave blank for recommended</label><input id="setRateOverride" type="number" inputmode="decimal" min="0" max="60" placeholder="auto"></div>
+          <div class="field"><label for="setStateRate">State income tax rate (%)</label><input id="setStateRate" type="number" inputmode="decimal" min="0" max="15" step="0.1"></div>
+          <div class="field"><label for="setMileRate">Mileage rate ($/mile)</label><input id="setMileRate" type="number" inputmode="decimal" min="0" step="0.01"></div>
+        </div>
+        <div class="card">
+          <h2>Data</h2>
+          <button class="btn btn-ghost" id="exportBtn">Export CSV</button>
+          <button class="btn btn-ghost" id="wipeBtn" style="margin-top:10px;color:var(--danger)">Erase all data</button>
+          <p class="disclaimer" style="margin-top:14px">Your data never leaves this device. GigTax gives planning estimates, not tax advice.</p>
+        </div>
+      </section>
+    </div>
+
+    <button class="fab" id="fabAdd" aria-label="Add income or expense">+</button>
+
+    <nav class="tabbar" role="tablist">
+      <div class="tabbar-inner">
+        <button class="tab" role="tab" aria-selected="true" data-view="home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1z"/></svg>
+          Home<span class="tab-ind"></span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false" data-view="miles">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Miles<span class="tab-ind"></span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false" data-view="quarters">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+          Quarters<span class="tab-ind"></span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false" data-view="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 00-2-1.2L14 3h-4l-.4 2.6a7 7 0 00-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 005 12c0 .4 0 .8.1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 002 1.2L10 21h4l.4-2.6a7 7 0 002-1.2l2.4 1 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z"/></svg>
+          Settings<span class="tab-ind"></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ================= ADD SHEET ================= -->
+  <div class="sheet-veil" id="sheetVeil"></div>
+  <div class="sheet" id="addSheet" role="dialog" aria-modal="true" aria-label="Add entry">
+    <div class="grabber"></div>
+    <h3 id="sheetTitle">Add income</h3>
+    <div class="seg-toggle" id="typeToggle">
+      <button data-t="income" class="on">Income</button>
+      <button data-t="expense">Expense</button>
+      <button data-t="trip">Miles</button>
+    </div>
+    <div class="field amount-input" id="amtField"><span>$</span><input id="inAmount" type="number" inputmode="decimal" placeholder="0.00" min="0" step="0.01" aria-label="Amount"></div>
+    <div class="field" id="milesField" hidden><label for="inMiles">Miles driven</label><input id="inMiles" type="number" inputmode="decimal" placeholder="0" min="0" step="0.1"></div>
+    <div class="field"><label for="inNote" id="noteLbl">Source</label><input id="inNote" type="text" placeholder="e.g. Uber payout" maxlength="60"></div>
+    <button class="btn btn-ink" id="saveEntry">Save</button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   GigTax — local-first tax set-aside estimator
+   All figures are planning estimates. Constants are 2026
+   defaults and editable via Settings where it matters.
+   ========================================================= */
+
+const TAX = {
+  year: 2026,
+  seFactor: 0.9235,            // net earnings subject to SE tax
+  ssRate: 0.124, ssWageBase: 184500,
+  medicareRate: 0.029,
+  stdDeduction: { single: 16100, married: 32200, hoh: 24150 },
+  // 2026 federal brackets (estimates): [upperBound, rate]
+  brackets: {
+    single: [[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[Infinity,.37]],
+    married:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[Infinity,.37]],
+    hoh:    [[17700,.10],[67450,.12],[105700,.22],[201775,.24],[256225,.32],[640600,.35],[Infinity,.37]],
+  },
+  mileageRate: 0.70,
+};
+
+const NO_TAX_STATES = ['AK','FL','NV','NH','SD','TN','TX','WA','WY'];
+const STATES = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC'];
+const QUARTERS = [
+  { label:'Q1', due:'2026-04-15' }, { label:'Q2', due:'2026-06-15' },
+  { label:'Q3', due:'2026-09-15' }, { label:'Q4', due:'2027-01-15' },
+];
+
+/* ---------- state ---------- */
+const KEY = 'gigtax_v1';
+let S = load();
+function load() {
+  try { const d = JSON.parse(localStorage.getItem(KEY)); if (d && d.profile) return d; } catch(e){}
+  return {
+    onboarded: false,
+    profile: { gigTypes: [], filingStatus: 'single', state: 'CA', stateRate: 4.5, expectedIncome: 30000 },
+    settings: { mileageRate: TAX.mileageRate, rateOverride: null },
+    entries: [], trips: [], paidQuarters: {},
+  };
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(S)); }
+
+/* ---------- tax engine ---------- */
+function fedTax(taxable, status) {
+  let tax = 0, prev = 0;
+  for (const [cap, rate] of TAX.brackets[status]) {
+    if (taxable > prev) tax += (Math.min(taxable, cap) - prev) * rate;
+    prev = cap;
+    if (taxable <= cap) break;
+  }
+  return tax;
+}
+// Full estimate for a year of gig net profit.
+function estimateTax(gross, expenses, status, stateRatePct) {
+  const net = Math.max(0, gross - expenses);
+  const seBase = net * TAX.seFactor;
+  const ss = Math.min(seBase, TAX.ssWageBase) * TAX.ssRate;
+  const medicare = seBase * TAX.medicareRate;
+  const seTax = ss + medicare;
+  const agi = Math.max(0, net - seTax / 2);
+  const taxable = Math.max(0, agi - TAX.stdDeduction[status]);
+  const fed = fedTax(taxable, status);
+  const state = taxable * (stateRatePct / 100);
+  const total = seTax + fed + state;
+  return { net, seTax, fed, state, taxable, total, rate: gross > 0 ? total / gross : 0 };
+}
+function recommendedRate() {
+  if (S.settings.rateOverride != null && S.settings.rateOverride !== '') return Number(S.settings.rateOverride) / 100;
+  const p = S.profile;
+  const est = estimateTax(p.expectedIncome || 0, 0, p.filingStatus, p.stateRate || 0);
+  return Math.min(0.5, Math.ceil(est.rate * 100) / 100); // round up to whole %
+}
+
+/* ---------- derived totals ---------- */
+function totals() {
+  const gross = S.entries.filter(e => e.type === 'income').reduce((a, e) => a + e.amount, 0);
+  const expenses = S.entries.filter(e => e.type === 'expense').reduce((a, e) => a + e.amount, 0);
+  const miles = S.trips.reduce((a, t) => a + t.miles, 0);
+  const mileDed = miles * S.settings.mileageRate;
+  const rate = recommendedRate();
+  const setAside = gross * rate;
+  const est = estimateTax(gross, expenses + mileDed, S.profile.filingStatus, S.profile.stateRate || 0);
+  return { gross, expenses, miles, mileDed, rate, setAside, safe: gross - setAside, est };
+}
+
+/* ---------- formatting ---------- */
+const fmt$ = n => '$' + Math.round(n).toLocaleString('en-US');
+const fmt$c = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmtPct = r => Math.round(r * 100) + '%';
+const fmtDate = iso => new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+/* ---------- count-up animation ---------- */
+function countUp(el, target, money = true) {
+  const from = Number(el.dataset.v || 0), to = target;
+  el.dataset.v = to;
+  if (Math.abs(to - from) < 1) { el.textContent = money ? fmt$(to) : Math.round(to).toLocaleString(); return; }
+  const t0 = performance.now(), dur = 500;
+  (function tick(t) {
+    const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    const v = from + (to - from) * e;
+    el.textContent = money ? fmt$(v) : Math.round(v).toLocaleString();
+    if (k < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+
+/* ---------- rendering ---------- */
+const $ = id => document.getElementById(id);
+
+function renderHome() {
+  const T = totals();
+  countUp($('safeAmt'), T.safe);
+  countUp($('grossAmt'), T.gross);
+  countUp($('setAsideAmt'), T.setAside);
+  const irsPct = T.gross > 0 ? T.rate * 100 : 0;
+  $('segIrs').style.width = irsPct + '%';
+  $('segMine').style.width = (100 - irsPct) + '%';
+  $('rateStat').textContent = fmtPct(T.rate);
+  $('dedStat').textContent = fmt$(T.expenses + T.mileDed);
+  const nq = QUARTERS.find(q => new Date(q.due) >= new Date());
+  $('nextQStat').textContent = nq ? `${nq.label} · ${fmtDate(nq.due)}` : '—';
+
+  const list = $('entryList');
+  const rows = [...S.entries].sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id).slice(0, 20);
+  if (!rows.length) {
+    list.innerHTML = `<div class="empty">No activity yet.<br><strong>Tap + to log your first payout.</strong></div>`;
+  } else {
+    list.innerHTML = rows.map(e => `
+      <div class="entry-row">
+        <div class="entry-ico ${e.type === 'expense' ? 'exp' : ''}">${e.type === 'expense' ? '−' : '+'}</div>
+        <div class="entry-main"><div class="t">${esc(e.note) || (e.type === 'expense' ? 'Expense' : 'Income')}</div><div class="d">${fmtDate(e.date)}</div></div>
+        <div class="entry-amt">
+          <div class="a num">${e.type === 'expense' ? '−' : ''}${fmt$c(e.amount)}</div>
+          ${e.type === 'income' ? `<div class="s num">set aside ${fmt$c(e.amount * totals().rate)}</div>` : ''}
+        </div>
+        <button class="entry-del" data-del="${e.id}" aria-label="Delete entry">×</button>
+      </div>`).join('');
+  }
+}
+
+function renderMiles() {
+  const T = totals();
+  countUp($('milesDedAmt'), T.mileDed);
+  countUp($('milesTotal'), T.miles, false);
+  $('milesRateLbl').textContent = '$' + S.settings.mileageRate.toFixed(2);
+  const list = $('tripList');
+  const rows = [...S.trips].sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id).slice(0, 20);
+  list.innerHTML = rows.length ? rows.map(t => `
+    <div class="entry-row">
+      <div class="entry-ico">🚗</div>
+      <div class="entry-main"><div class="t">${esc(t.note) || 'Trip'}</div><div class="d">${fmtDate(t.date)}</div></div>
+      <div class="entry-amt"><div class="a num">${t.miles.toLocaleString()} mi</div><div class="s num" style="color:var(--mine)">−${fmt$c(t.miles * S.settings.mileageRate)}</div></div>
+      <button class="entry-del" data-deltrip="${t.id}" aria-label="Delete trip">×</button>
+    </div>`).join('')
+    : `<div class="empty">Every mile you log is <strong>${'$' + S.settings.mileageRate.toFixed(2)} off your taxable income</strong>.</div>`;
+}
+
+function renderQuarters() {
+  const T = totals();
+  countUp($('qTaxAmt'), T.est.total);
+  countUp($('qSetAside'), T.setAside);
+  $('qVerdict').textContent = T.setAside >= T.est.total ? 'on track ✓' : `${fmt$(T.est.total - T.setAside)} short`;
+  $('qVerdict').style.color = T.setAside >= T.est.total ? 'var(--mine)' : 'var(--irs)';
+
+  const now = new Date();
+  const nextIdx = QUARTERS.findIndex(q => new Date(q.due) >= now);
+  $('qList').innerHTML = QUARTERS.map((q, i) => {
+    const paid = S.paidQuarters[q.label];
+    const days = Math.ceil((new Date(q.due) - now) / 86400000);
+    const isNext = i === nextIdx && !paid;
+    return `
+      <div class="q-row ${isNext ? 'next' : ''}">
+        <div class="q-badge">${q.label}</div>
+        <div class="q-main">
+          <div class="t">Due ${new Date(q.due + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+          <div class="d">${paid ? 'Marked paid' : isNext ? `<span class="countdown">${days} days away</span>` : days < 0 ? 'Past' : 'Upcoming'}</div>
+        </div>
+        ${paid ? `<span class="q-paid">✓ Paid</span>` : `<button class="btn btn-ghost btn-sm" data-payq="${q.label}">Mark paid</button>`}
+      </div>`;
+  }).join('');
+
+  $('taxMath').innerHTML = mathRows(T.est, T.gross, T.expenses + T.mileDed);
+}
+
+function mathRows(est, gross, deductions) {
+  return `
+    <div class="stat-row"><span class="k">Gross income</span><span class="v num">${fmt$(gross)}</span></div>
+    <div class="stat-row"><span class="k">− Expenses &amp; mileage</span><span class="v num">${fmt$(deductions)}</span></div>
+    <div class="stat-row"><span class="k">= Net profit</span><span class="v num">${fmt$(est.net)}</span></div>
+    <div class="stat-row"><span class="k">Self-employment tax (15.3%)</span><span class="v num">${fmt$(est.seTax)}</span></div>
+    <div class="stat-row"><span class="k">Federal income tax</span><span class="v num">${fmt$(est.fed)}</span></div>
+    <div class="stat-row"><span class="k">State income tax (est.)</span><span class="v num">${fmt$(est.state)}</span></div>
+    <div class="stat-row"><span class="k"><strong>Estimated total</strong></span><span class="v num" style="color:var(--irs)">${fmt$(est.total)}</span></div>`;
+}
+
+function renderSettings() {
+  $('setStatus').value = S.profile.filingStatus;
+  $('setState').value = S.profile.state;
+  $('setExpected').value = S.profile.expectedIncome || '';
+  $('setRateOverride').value = S.settings.rateOverride ?? '';
+  $('setStateRate').value = S.profile.stateRate ?? 0;
+  $('setMileRate').value = S.settings.mileageRate;
+}
+
+function renderAll() { renderHome(); renderMiles(); renderQuarters(); renderSettings(); }
+function esc(s) { return (s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+/* ---------- navigation ---------- */
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', t === tab));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+    $('view-' + tab.dataset.view).classList.add('on');
+    $('fabAdd').style.display = tab.dataset.view === 'settings' ? 'none' : 'grid';
+  });
+});
+
+/* ---------- add sheet ---------- */
+let sheetType = 'income';
+function openSheet(type) {
+  sheetType = type;
+  document.querySelectorAll('#typeToggle button').forEach(b => b.classList.toggle('on', b.dataset.t === type));
+  $('sheetTitle').textContent = type === 'income' ? 'Add income' : type === 'expense' ? 'Add expense' : 'Log miles';
+  $('amtField').hidden = type === 'trip';
+  $('milesField').hidden = type !== 'trip';
+  $('noteLbl').textContent = type === 'income' ? 'Source' : type === 'expense' ? 'What for' : 'Note';
+  $('inNote').placeholder = type === 'income' ? 'e.g. Uber payout' : type === 'expense' ? 'e.g. Phone mount' : 'e.g. Airport runs';
+  $('sheetVeil').classList.add('open'); $('addSheet').classList.add('open');
+  setTimeout(() => (type === 'trip' ? $('inMiles') : $('inAmount')).focus(), 250);
+}
+function closeSheet() {
+  $('sheetVeil').classList.remove('open'); $('addSheet').classList.remove('open');
+  $('inAmount').value = ''; $('inMiles').value = ''; $('inNote').value = '';
+}
+$('fabAdd').addEventListener('click', () => openSheet('income'));
+$('addTripBtn').addEventListener('click', () => openSheet('trip'));
+$('sheetVeil').addEventListener('click', closeSheet);
+document.querySelectorAll('#typeToggle button').forEach(b => b.addEventListener('click', () => openSheet(b.dataset.t)));
+
+$('saveEntry').addEventListener('click', () => {
+  const today = new Date().toISOString().slice(0, 10);
+  if (sheetType === 'trip') {
+    const miles = parseFloat($('inMiles').value);
+    if (!(miles > 0)) return toast('Enter miles first');
+    S.trips.push({ id: Date.now(), miles, note: $('inNote').value.trim(), date: today });
+    toast(`Logged ${miles} mi · −${fmt$c(miles * S.settings.mileageRate)} taxable`);
+  } else {
+    const amount = parseFloat($('inAmount').value);
+    if (!(amount > 0)) return toast('Enter an amount first');
+    S.entries.push({ id: Date.now(), type: sheetType, amount, note: $('inNote').value.trim(), date: today });
+    toast(sheetType === 'income' ? `Nice. ${fmt$c(amount * recommendedRate())} goes to the tax pile.` : 'Expense saved — taxable income down.');
+  }
+  save(); closeSheet(); renderAll();
+});
+
+/* delete + mark-paid (event delegation) */
+document.addEventListener('click', e => {
+  const del = e.target.closest('[data-del]');
+  if (del) { S.entries = S.entries.filter(x => x.id !== Number(del.dataset.del)); save(); renderAll(); return; }
+  const delT = e.target.closest('[data-deltrip]');
+  if (delT) { S.trips = S.trips.filter(x => x.id !== Number(delT.dataset.deltrip)); save(); renderAll(); return; }
+  const payq = e.target.closest('[data-payq]');
+  if (payq) { S.paidQuarters[payq.dataset.payq] = { paid: true, at: Date.now() }; save(); renderQuarters(); toast('Marked paid ✓'); }
+});
+
+/* ---------- settings ---------- */
+function bindSetting(id, fn) { $(id).addEventListener('change', () => { fn(); save(); renderAll(); }); }
+bindSetting('setStatus', () => S.profile.filingStatus = $('setStatus').value);
+bindSetting('setState', () => { S.profile.state = $('setState').value; S.profile.stateRate = NO_TAX_STATES.includes($('setState').value) ? 0 : (S.profile.stateRate || 4.5); });
+bindSetting('setExpected', () => S.profile.expectedIncome = Math.max(0, parseFloat($('setExpected').value) || 0));
+bindSetting('setRateOverride', () => { const v = $('setRateOverride').value; S.settings.rateOverride = v === '' ? null : Math.min(60, Math.max(0, parseFloat(v))); });
+bindSetting('setStateRate', () => S.profile.stateRate = Math.min(15, Math.max(0, parseFloat($('setStateRate').value) || 0)));
+bindSetting('setMileRate', () => S.settings.mileageRate = Math.max(0, parseFloat($('setMileRate').value) || 0));
+
+$('exportBtn').addEventListener('click', () => {
+  const lines = ['type,date,amount,miles,note'];
+  S.entries.forEach(e => lines.push(`${e.type},${e.date},${e.amount},,"${(e.note || '').replace(/"/g, '""')}"`));
+  S.trips.forEach(t => lines.push(`trip,${t.date},,${t.miles},"${(t.note || '').replace(/"/g, '""')}"`));
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/csv' }));
+  a.download = `gigtax-${TAX.year}.csv`; a.click();
+});
+$('wipeBtn').addEventListener('click', () => {
+  if (confirm('Erase everything? This cannot be undone.')) { localStorage.removeItem(KEY); location.reload(); }
+});
+
+/* ---------- toast ---------- */
+let toastTimer;
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ---------- onboarding ---------- */
+function populateStates(sel) {
+  sel.innerHTML = STATES.map(s => `<option value="${s}">${s}${NO_TAX_STATES.includes(s) ? ' — no income tax' : ''}</option>`).join('');
+}
+function obGo(step) {
+  document.querySelectorAll('.ob-step').forEach(s => s.classList.toggle('on', s.dataset.step == step));
+  window.scrollTo(0, 0);
+}
+$('gigChips').addEventListener('click', e => {
+  const chip = e.target.closest('.chip'); if (!chip) return;
+  chip.classList.toggle('on');
+});
+$('obNext1').addEventListener('click', () => {
+  S.profile.gigTypes = [...document.querySelectorAll('#gigChips .chip.on')].map(c => c.dataset.v);
+  obGo(2);
+});
+$('obNext2').addEventListener('click', () => {
+  S.profile.filingStatus = $('obStatus').value;
+  S.profile.state = $('obState').value;
+  S.profile.stateRate = NO_TAX_STATES.includes(S.profile.state) ? 0 : 4.5;
+  obGo(3);
+});
+$('obNext3').addEventListener('click', () => {
+  S.profile.expectedIncome = Math.max(0, parseFloat($('obIncome').value) || 30000);
+  const rate = recommendedRate();
+  const est = estimateTax(S.profile.expectedIncome, 0, S.profile.filingStatus, S.profile.stateRate);
+  $('revealPct').textContent = fmtPct(rate);
+  $('revealPctInline').textContent = fmtPct(rate);
+  $('revealMath').innerHTML = mathRows(est, S.profile.expectedIncome, 0);
+  obGo(4);
+});
+$('obFinish').addEventListener('click', () => {
+  S.onboarded = true; save();
+  $('onboarding').hidden = true; $('app').hidden = false;
+  renderAll();
+});
+
+/* ---------- boot ---------- */
+populateStates($('obState'));
+populateStates($('setState'));
+$('yearChip').textContent = TAX.year;
+if (S.onboarded) { $('app').hidden = false; renderAll(); }
+else { $('onboarding').hidden = false; }
+
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "GigTax — know what's actually yours",
+  "short_name": "GigTax",
+  "description": "Real-time tax set-aside for gig workers and freelancers.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101311",
+  "theme_color": "#101311",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
